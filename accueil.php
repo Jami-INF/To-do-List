@@ -87,40 +87,72 @@
         }catch(PDOException $e){ 
           echo "connection refusé";
         } 
+        //echo date('d M y');
+        //echo date('d M y', strtotime("28/11/2021"));
         require (__DIR__.'/modeles/Tache.php');
-        $t1 = new Tache(1, 12,'titre', 'description', '28/11/2021', '24/12/2021');
-        $t2 = new Tache(2, 12,'titresfgqfgqfdgqdfgqdf', 'description2', '29/10/2021', '20/12/2021');
-        $t3 = new Tache(3, 12,'titre', 'description3', '27/11/2021', '15/12/2021');
+        $t1 = new Tache(1, 12,'titre', 'description');
+        $t2 = new Tache(2, 12,'titresfgqfgqfdgqdfgqdf', 'description2');
+        $t3 = new Tache(3, 12,'titre', 'description3');
         $TTaches = array($t1, $t2, $t3);
 
         $idTache = $t1->getidtache();
         $idUser = $t1->getiduser();
         $titre = $t1->gettitre();
         $descriptionss = $t1->getdescription();
-        $dateAjout = $t1->getdateajout();
-        $dateExpiration = $t1->getdateexpiration();
         //$test = $db->prepare ("SELECT * FROM Todoux");
         //$test->execute();
-
-        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idUser, :dateAjout, :dateExpiration)";
+        
+        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idUser)";
 
         $db->executeQuery($query,array(
           ':titre' => array($titre, PDO::PARAM_STR),
           ':descriptionss' => array($descriptionss, PDO::PARAM_STR),
           ':idTache' => array($idTache, PDO::PARAM_INT),
           ':idUser' => array($idUser, PDO::PARAM_INT),
-          ':dateAjout' => array($dateAjout, PDO::PARAM_STR),
-          ':dateExpiration' => array($dateExpiration, PDO::PARAM_STR)
         ));
+        
         foreach ($TTaches as $tache){
           echo "<br>";
           echo $tache->gettitre();
           echo "zebi";
           echo "<br>";
         }
-
+        
       ?>
+      <a class="butonacueil" href="newTache.php">
+        <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>
+      </a>
+      <?php
+      require_once(__DIR__.'/modeles/TacheGateway.php');
+      $query = "SELECT * FROM Todoux";
+      $param =[];
+      $db->executeQuery($query, $param);
+      $result=$db->getResults();
+      foreach ($result as $row) { 
+        echo "<br>";
+        echo $row['titre'];
+        echo "<br>";
+        echo $row['description'];
+        echo "<br>";
+        echo $row['idTache'];
+        echo "<br>";
+        echo $row['idUser'];
+        echo "<br>";
 
+        if (isset($_POST['supp'])) {
+          $tache = new TacheGateway ($db);
+          $tache->SupprimerTache($row['titre'], $row['description'], $row['idTache'], $row['idUser'], $db);
+        }
+        ?>
+        <form method="post">
+          <a class="butonacueil">
+          <button type="submit" name="supp" id="add_btn" class="add_btn">Supprimer TOUTE les tache</button>
+        </form>
+      </a>
+      <?php
+      }
+      ?>
+      
     </div>     
 
   </section>

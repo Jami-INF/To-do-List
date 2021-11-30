@@ -79,13 +79,34 @@
         <h1>ToDoux Liste</h1>
       </a>
     <h2>Nouvelle tache</h2>
-	<form action="newTache.php" method="post">
-        <input type="text" name="nomTache" placeholder="Nom de la tache">
-        <input type="text" name="descriptionTache" placeholder="Description">
-        <input type="date" name="dateTache" placeholder="Date de fin">
-        <input type="submit" name="submit" value="Ajouter">
-    </form>                
+    <?php
+    require (__DIR__.'/config/Connection.php');
+    require (__DIR__.'/modeles/Tache.php');
+        try{
+        $username = 'root';
+        $password = '';
+        $dsn = 'localhost';
+        $dbname = 'todoux';
+        $db = new Connection($dsn, $dbname, $username, $password);
+        echo "connection réussi";
+        }catch(PDOException $e){ 
+          echo "connection refusé";
+        } 
 
+    require_once(__DIR__.'/modeles/TacheGateway.php');
+
+    if (isset($_POST['submit'])) {
+      $tache = new TacheGateway ($db);
+      $tache->AjoutTacheManuellement ($_POST['titre'], $_POST['description'], $_POST['idUser'], $db);
+    }
+  ?>
+	<form method="post">
+        <input type="text" name="titre" placeholder="Nom de la tache">
+        <input type="text" name="description" placeholder="Description">
+        <input type="number" name="idUser" placeholder="idUser (public/privé a gerer)">
+        
+        <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
+    </form>                
     </div>     
 
   </section>
