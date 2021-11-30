@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> Todo Lofist </title>
+    <title> ToDoux Liste </title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
   <section>
     <div class="main">
     <a href="index.php">
-        <h1>Todo Lofist</h1>
+        <h1>ToDoux Liste</h1>
       </a>
     <h2>Inscription</h2>
       <form class="form-add-list" action="index.php" method="post">
