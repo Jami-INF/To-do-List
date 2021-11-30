@@ -76,7 +76,51 @@
   </div>
   <section class="home-section">
     <div class="background">
+	<?php
+        require (__DIR__.'/config/Connection.php');
+        try{
+        $username = 'root';
+        $password = '';
+        $dsn = 'localhost';
+        $dbname = 'todoux';
+        $db = new Connection($dsn, $dbname, $username, $password);
+        echo "connection réussi";
+        }catch(PDOException $e){ 
+          echo "connection refusé";
+        } 
+        require (__DIR__.'/modeles/Tache.php');
+        $t1 = new Tache(1, 12,'titre', 'description', '28/11/2021', '24/12/2021');
+        $t2 = new Tache(2, 12,'titresfgqfgqfdgqdfgqdf', 'description2', '29/10/2021', '20/12/2021');
+        $t3 = new Tache(3, 12,'titre', 'description3', '27/11/2021', '15/12/2021');
+        $TTaches = array($t1, $t2, $t3);
 
+        $idTache = $t1->getidtache();
+        $idUser = $t1->getiduser();
+        $titre = $t1->gettitre();
+        $descriptionss = $t1->getdescription();
+        $dateAjout = $t1->getdateajout();
+        $dateExpiration = $t1->getdateexpiration();
+        //$test = $db->prepare ("SELECT * FROM Todoux");
+        //$test->execute();
+
+        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idUser, :dateAjout, :dateExpiration)";
+
+        $db->executeQuery($query,array(
+          ':titre' => array($titre, PDO::PARAM_STR),
+          ':descriptionss' => array($descriptionss, PDO::PARAM_STR),
+          ':idTache' => array($idTache, PDO::PARAM_INT),
+          ':idUser' => array($idUser, PDO::PARAM_INT),
+          ':dateAjout' => array($dateAjout, PDO::PARAM_STR),
+          ':dateExpiration' => array($dateExpiration, PDO::PARAM_STR)
+        ));
+        foreach ($TTaches as $tache){
+          echo "<br>";
+          echo $tache->gettitre();
+          echo "zebi";
+          echo "<br>";
+        }
+
+      ?>
 
     </div>     
 
