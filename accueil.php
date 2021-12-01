@@ -96,19 +96,19 @@
         $TTaches = array($t1, $t2, $t3);
 
         $idTache = $t1->getidtache();
-        $idUser = $t1->getiduser();
+        $idList = $t1->getidlist();
         $titre = $t1->gettitre();
         $descriptionss = $t1->getdescription();
         //$test = $db->prepare ("SELECT * FROM Todoux");
         //$test->execute();
         
-        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idUser)";
+        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idList)";
 
         $db->executeQuery($query,array(
           ':titre' => array($titre, PDO::PARAM_STR),
           ':descriptionss' => array($descriptionss, PDO::PARAM_STR),
           ':idTache' => array($idTache, PDO::PARAM_INT),
-          ':idUser' => array($idUser, PDO::PARAM_INT),
+          ':idList' => array($idList, PDO::PARAM_INT),
         ));
         
         foreach ($TTaches as $tache){
@@ -136,12 +136,12 @@
         echo "<br>";
         echo $row['idTache'];
         echo "<br>";
-        echo $row['idUser'];
+        echo $row['idList'];
         echo "<br>";
 
         if (isset($_POST['supp'])) {
           $tache = new TacheGateway ($db);
-          $tache->SupprimerTache($row['titre'], $row['description'], $row['idTache'], $row['idUser'], $db);
+          $tache->SupprimerTache($row['titre'], $row['description'], $row['idTache'], $row['idList'], $db);
         }
         ?>
         <form method="post">

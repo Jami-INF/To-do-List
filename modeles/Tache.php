@@ -1,18 +1,18 @@
 <?php
 class Tache{
 	private $idTache;
-	private $idUser;
+	private $idList;
 	private $titre;
 	private $description;
 
-	function __construct (int $idTache, int $idUser, string $titre, string $description){
+	function __construct (int $idTache, int $idList, string $titre, string $description){
 		$this->idTache = $idTache;
-		$this->idUser = $idUser;
+		$this->idList = $idList;
 		$this->titre = $titre;
 		$this->description = $description;
 	}
-	public function getidUser(){
-		return $this->idUser;
+	public function getidList(){
+		return $this->idList;
 	}
 	public function gettitre(){
 		return $this->titre;
