@@ -128,6 +128,12 @@
       $result=$db->getResults();
       
       foreach ($result as $row) { 
+        
+        if (isset($_POST['supp'])) {
+          $tache = new TacheGateway ($db);
+          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
+        }
+
         echo "<br>";
         echo $row['nomTache'];
         echo "<br>";
@@ -135,12 +141,10 @@
         echo "<br>";
         echo $row['idList'];
         echo "<br>";
-        if (isset($_POST['supp'])) {
-          $tache = new TacheGateway ($db);
-          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
-        }
  
         ?>
+
+        
         <form method="post">
           <a class="butonacueil">
           <button type="submit" name="supp" id="add_btn" class="add_btn">Supprimer TOUTE les tache</button>
