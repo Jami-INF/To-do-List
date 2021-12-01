@@ -88,12 +88,10 @@
         }catch(PDOException $e){ 
           echo "connection refusé";
         } 
-        //echo date('d M y');
-        //echo date('d M y', strtotime("28/11/2021"));
         require (__DIR__.'/modeles/Tache.php');
         $t1 = new Tache(12,'nomTache', 'descriptionTache');
         $t2 = new Tache(12,'nomTachefgqfgqfdgqdfgqdf', 'descriptionTache2');
-        $t3 = new Tache(3, 12,'nomTache', 'descriptionTache3');
+        $t3 = new Tache(3,'nomTache', 'descriptionTache3');
         $TTaches = array($t1, $t2, $t3);
 
         //$idTache = $t1->getidtache();
@@ -105,11 +103,11 @@
         
         $query = "INSERT INTO Todoux VALUES(:nomTache, :descriptionTachess, :idList)";
 
-        $db->executeQuery($query,array(
-          ':nomTache' => array($nomTache, PDO::PARAM_STR),
-          ':descriptionTachess' => array($descriptionTachess, PDO::PARAM_STR),
-          ':idList' => array($idList, PDO::PARAM_INT),
-        ));
+        //$db->executeQuery($query,array(
+        //  ':nomTache' => array($nomTache, PDO::PARAM_STR),
+        //  ':descriptionTachess' => array($descriptionTachess, PDO::PARAM_STR),
+        //  ':idList' => array($idList, PDO::PARAM_INT),
+        //));
         
         foreach ($TTaches as $tache){
           echo "<br>";
@@ -128,6 +126,7 @@
       $param =[];
       $db->executeQuery($query, $param);
       $result=$db->getResults();
+      
       foreach ($result as $row) { 
         echo "<br>";
         echo $row['nomTache'];
@@ -136,11 +135,11 @@
         echo "<br>";
         echo $row['idList'];
         echo "<br>";
-
         if (isset($_POST['supp'])) {
           $tache = new TacheGateway ($db);
           $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
         }
+ 
         ?>
         <form method="post">
           <a class="butonacueil">
