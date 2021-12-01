@@ -74,39 +74,71 @@
     </ul>
   </div>
   <section class="home-section">
+
     <div class="main">
     <a href="index.php">
         <h1>ToDoux Liste</h1>
       </a>
-    <h2>Nouvelle tache</h2>
+    <h2>Nouvelle liste</h2>
+  
+    <form action="newList.php" method="POST">
+        <input type="text" name="nomListe" placeholder="Nom de la liste">
+        <input type="submit" name="submitListe" value="Ajouter">
+    </form>
+    <!-- <form action="index.php" method="POST" autocomplete="off">
+        <input type="text" name="liste" placeholder="Donner un titre à la liste">
+        <input type="submit" value="Ajouter la liste">
+</form> -->
+
+
+
+
+    
     <?php
-    require (__DIR__.'/config/Connection.php');
-    require (__DIR__.'/modeles/Tache.php');
-        try{
-        $username = 'root';
-        $password = '';
-        $dsn = 'localhost';
-        $dbname = 'todoux';
-        $db = new Connection($dsn, $dbname, $username, $password);
-        echo "connection réussi";
-        }catch(PDOException $e){ 
-          echo "connection refusé";
-        } 
+    require_once(__DIR__.'/config/Connection.php');
+    require_once(__DIR__.'/modeles/ListeGateway.php');
 
-    require_once(__DIR__.'/modeles/TacheGateway.php');
-
-    if (isset($_POST['submit'])) {
-      $tache = new TacheGateway ($db);
-      $tache->AjoutTacheManuellement ($_POST['titre'], $_POST['description'], $_POST['idUser'], $db);
+    try{
+    $username = 'root';
+    $password = '';
+    $dsn = 'localhost';
+    $dbname = 'todoux';
+    $db = new Connection($dsn, $dbname, $username, $password);
+    echo "connection réussi";
+    }catch(PDOException $e){ 
+      echo "connection refusé";
     }
-  ?>
-	<form method="post">
-        <input type="text" name="titre" placeholder="Nom de la tache">
-        <input type="text" name="description" placeholder="Description">
-        <input type="number" name="idUser" placeholder="idUser (public/privé a gerer)">
-        
-        <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
-    </form>                
+
+      if(isset($_POST['nomListe'])){
+          $nomListe = $_POST['nomListe'];
+          // $liste = new ListeGateway($db);
+          // $liste->addList($nomListe);
+          // $liste->getList();
+      }else{
+          echo "Veuillez remplir le nom de la liste";
+      }
+
+    
+      // echo 1;
+      // $nomListe=$_POST['nomListe'];
+      // $query = "INSERT INTO list VALUES (:nomList)";
+      // echo 4;
+      // $db->executeQuery($query, array(
+      //     ':nomList' => array($nomListe, PDO::PARAM_STR)));
+      // echo ('inssertion réussi');
+      // echo 3;
+      
+      $query = "SELECT * FROM list";
+      $result = $db->executeQuery($query);
+      // echo 5;
+      echo $result;
+
+
+
+
+
+
+    ?>
     </div>     
 
   </section>
