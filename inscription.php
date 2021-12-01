@@ -60,25 +60,38 @@
           echo $_POST['verif_adresse_mail'];
           echo $_POST['password'];
           echo $_POST['verif_password'];
-
+          $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
+          // !empty($_POST['adresse_mail']) && !empty($_POST['verif_adresse_mail']) && 
 
           if(isset($_POST['submitInscription'])){
-            if(!empty($_POST['adresse_mail']) && !empty($_POST['verif_adresse_mail']) && !empty($_POST['password']) && !empty($_POST['verif_password'])){
-              if($_POST['adresse_mail'] == $_POST['verif_adresse_mail']){
-                if($_POST['password'] == $_POST['verif_password']){
+            if(!empty($_POST['password']) && !empty($_POST['verif_password'])){
+              if(!empty($_POST['adresse_mail'])){
+                if(!empty($_POST['verif_adresse_mail'])){
+                  if($_POST['adresse_mail'] == $_POST['verif_adresse_mail']){
+                    if($_POST['password'] == $_POST['verif_password']){
 
-                  $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-                  $utilisateurGateway = new UtilisateurGateway($db);
-                  $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse(), $db);
+                      $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+                      $utilisateurGateway = new UtilisateurGateway($db);
+                      $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse(), $db);
 
-                  echo "<p>Vous êtes inscrit</p>";
+                      echo "<p>Vous êtes inscrit</p>";
+                    }
+                    else{
+                      echo "<p>Les mots de passe ne correspondent pas</p>";
+                    }
+                  }
+                  else{
+                    echo "<p>Les adresses mail ne correspondent pas</p>";
+                  }
+                }else{
+                  if (!preg_match($expression, $$_POST['verif_adresse_mail'])) {
+                    echo "<p>Le format de l'email n'est pas correct!</p>";
+                    }
                 }
-                else{
-                  echo "<p>Les mots de passe ne correspondent pas</p>";
-                }
-              }
-              else{
-                echo "<p>Les adresses mail ne correspondent pas</p>";
+              }else{
+                if (!preg_match($expression, $_POST['adresse_mail'])) {
+                  echo "<p>Le format de l'email n'est pas correct!</p>";
+                  }
               }
             }
             else{
