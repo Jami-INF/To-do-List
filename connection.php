@@ -16,10 +16,10 @@
   <section>
     <div class="main">
       <h2>Connection</h2>
-      <form class="form-add-list" action="index.php" method="post">
+      <form class="form-add-list" action="connection.php" method="post">
         <input type="email" name="adresse_mail" placeholder="Adresse Email">
         <input type="password" name="password" placeholder="Mot de passe">
-        <input type="submit" name="submit" value="Connexion">
+        <input type="submit" name="submitConnexion" value="Connexion">
       </form>
       <a class="butonacueil" href="inscription.php">
         <button type="button" name="button" class="btn btn-primary" id="btn">Inscription</button>
@@ -27,7 +27,45 @@
       <a class="butonacueil" href="accueil.php">
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
+    <?php
+      require_once(__DIR__.'/config/Connection.php');
+      require (__DIR__.'/modeles/Utilisateur.php');
+      require (__DIR__.'/modeles/UtilisateurGateway.php');
 
+
+      try{
+      $username = 'root';
+      $password = '';
+      $dsn = 'localhost';
+      $dbname = 'todoux';
+      $db = new Connection($dsn, $dbname, $username, $password);
+      echo "connection réussi";
+      }catch(PDOException $e){ 
+        echo "connection refusé";
+      }
+
+      filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
+      filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+
+      if(isset($_POST['submitConnexion'])){
+        $email = $_POST['adresse_mail'];
+        $password = $_POST['password'];
+        $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+        $utilisateurGateway = new UtilisateurGateway($db);
+        $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(), $utilisateur->getMotDePasse(), $db);
+        echo $utilisateurRep;
+        if($utilisateurRep!=NULL){
+          echo "bon utilisateur";
+          header('Location: accueil.php');
+        }else{
+          echo "mauvais utilisateur";
+        }
+      }
+        
+    
+
+
+    ?>
 
     </div>     
 

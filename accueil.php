@@ -16,7 +16,7 @@
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="index.php">
          <i class='bx bx-home-alt' ></i>
          <p class="links_name">Accueil</p>
         </a>
@@ -58,7 +58,7 @@
       <p class="tooltip">List 3</p>
     </li>
      <li>
-       <a href="#">
+       <a href="newList.php">
         <i class='bx bx-plus' ></i>
         <p class="links_name">Ajouter liste</p>
        </a>
@@ -77,6 +77,7 @@
     <div class="main">
 	<?php
         require (__DIR__.'/config/Connection.php');
+
         try{
         $username = 'root';
         $password = '';

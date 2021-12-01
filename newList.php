@@ -74,18 +74,71 @@
     </ul>
   </div>
   <section class="home-section">
+
     <div class="main">
     <a href="index.php">
         <h1>ToDoux Liste</h1>
       </a>
-    <h2>Nouvelle tache</h2>
-	<form action="newTache.php" method="post">
-        <input type="text" name="nomTache" placeholder="Nom de la tache">
-        <input type="text" name="descriptionTache" placeholder="Description">
-        <input type="date" name="dateTache" placeholder="Date de fin">
-        <input type="submit" name="submitTache" value="Ajouter">
-    </form>                
+    <h2>Nouvelle liste</h2>
+  
+    <form action="newList.php" method="POST">
+        <input type="text" name="nomListe" placeholder="Nom de la liste">
+        <input type="submit" name="submitListe" value="Ajouter">
+    </form>
+    <!-- <form action="index.php" method="POST" autocomplete="off">
+        <input type="text" name="liste" placeholder="Donner un titre à la liste">
+        <input type="submit" value="Ajouter la liste">
+</form> -->
 
+
+
+
+    
+    <?php
+    require_once(__DIR__.'/config/Connection.php');
+    require_once(__DIR__.'/modeles/ListeGateway.php');
+
+    try{
+    $username = 'root';
+    $password = '';
+    $dsn = 'localhost';
+    $dbname = 'todoux';
+    $db = new Connection($dsn, $dbname, $username, $password);
+    echo "connection réussi";
+    }catch(PDOException $e){ 
+      echo "connection refusé";
+    }
+
+      if(isset($_POST['nomListe'])){
+          $nomListe = $_POST['nomListe'];
+          // $liste = new ListeGateway($db);
+          // $liste->addList($nomListe);
+          // $liste->getList();
+      }else{
+          echo "Veuillez remplir le nom de la liste";
+      }
+
+    
+      // echo 1;
+      // $nomListe=$_POST['nomListe'];
+      // $query = "INSERT INTO list VALUES (:nomList)";
+      // echo 4;
+      // $db->executeQuery($query, array(
+      //     ':nomList' => array($nomListe, PDO::PARAM_STR)));
+      // echo ('inssertion réussi');
+      // echo 3;
+      
+      $query = "SELECT * FROM list";
+      $result = $db->executeQuery($query);
+      // echo 5;
+      echo $result;
+
+
+
+
+
+
+    ?>
     </div>     
 
   </section>
