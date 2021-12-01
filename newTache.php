@@ -97,12 +97,12 @@
 
     if (isset($_POST['submit'])) {
       $tache = new TacheGateway ($db);
-      $tache->AjoutTacheManuellement ($_POST['titre'], $_POST['description'], $_POST['idUser'], $db);
+      $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $db);
     }
   ?>
 	<form method="post">
-        <input type="text" name="titre" placeholder="Nom de la tache">
-        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="nomTache" placeholder="Nom de la tache">
+        <input type="text" name="descriptionTache" placeholder="descriptionTache">
         <input type="number" name="idUser" placeholder="idUser (public/privé a gerer)">
         
         <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>

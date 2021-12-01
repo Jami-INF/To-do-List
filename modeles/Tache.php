@@ -1,27 +1,23 @@
 <?php
 class Tache{
-	private $idTache;
 	private $idList;
-	private $titre;
-	private $description;
+	private $nomTache;
+	private $descriptionTache;
 
-	function __construct (int $idTache, int $idList, string $titre, string $description){
-		$this->idTache = $idTache;
+	function __construct (int $idList, string $nomTache, string $descriptionTache){
 		$this->idList = $idList;
-		$this->titre = $titre;
-		$this->description = $description;
+		$this->nomTache = $nomTache;
+		$this->descriptionTache = $descriptionTache;
 	}
+
 	public function getidList(){
 		return $this->idList;
 	}
-	public function gettitre(){
-		return $this->titre;
+	public function getnomTache(){
+		return $this->nomTache;
 	}
-	public function getidTache(){
-		return $this->idTache;
-	}
-	public function getdescription(){
-		return $this->description;
+	public function getdescriptionTache(){
+		return $this->descriptionTache;
 	}
 	public function getdateAjout(){
 		return $this->dateAjout;

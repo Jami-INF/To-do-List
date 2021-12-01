@@ -91,30 +91,29 @@
         //echo date('d M y');
         //echo date('d M y', strtotime("28/11/2021"));
         require (__DIR__.'/modeles/Tache.php');
-        $t1 = new Tache(1, 12,'titre', 'description');
-        $t2 = new Tache(2, 12,'titresfgqfgqfdgqdfgqdf', 'description2');
-        $t3 = new Tache(3, 12,'titre', 'description3');
+        $t1 = new Tache(12,'nomTache', 'descriptionTache');
+        $t2 = new Tache(12,'nomTachefgqfgqfdgqdfgqdf', 'descriptionTache2');
+        $t3 = new Tache(3, 12,'nomTache', 'descriptionTache3');
         $TTaches = array($t1, $t2, $t3);
 
-        $idTache = $t1->getidtache();
+        //$idTache = $t1->getidtache();
         $idList = $t1->getidlist();
-        $titre = $t1->gettitre();
-        $descriptionss = $t1->getdescription();
+        $nomTache = $t1->getnomTache();
+        $descriptionTachess = $t1->getdescriptionTache();
         //$test = $db->prepare ("SELECT * FROM Todoux");
         //$test->execute();
         
-        $query = "INSERT INTO Todoux VALUES(:titre, :descriptionss, :idTache, :idList)";
+        $query = "INSERT INTO Todoux VALUES(:nomTache, :descriptionTachess, :idList)";
 
         $db->executeQuery($query,array(
-          ':titre' => array($titre, PDO::PARAM_STR),
-          ':descriptionss' => array($descriptionss, PDO::PARAM_STR),
-          ':idTache' => array($idTache, PDO::PARAM_INT),
+          ':nomTache' => array($nomTache, PDO::PARAM_STR),
+          ':descriptionTachess' => array($descriptionTachess, PDO::PARAM_STR),
           ':idList' => array($idList, PDO::PARAM_INT),
         ));
         
         foreach ($TTaches as $tache){
           echo "<br>";
-          echo $tache->gettitre();
+          echo $tache->getnomTache();
           echo "zebi";
           echo "<br>";
         }
@@ -131,18 +130,16 @@
       $result=$db->getResults();
       foreach ($result as $row) { 
         echo "<br>";
-        echo $row['titre'];
+        echo $row['nomTache'];
         echo "<br>";
-        echo $row['description'];
-        echo "<br>";
-        echo $row['idTache'];
+        echo $row['descriptionTache'];
         echo "<br>";
         echo $row['idList'];
         echo "<br>";
 
         if (isset($_POST['supp'])) {
           $tache = new TacheGateway ($db);
-          $tache->SupprimerTache($row['titre'], $row['description'], $row['idTache'], $row['idList'], $db);
+          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
         }
         ?>
         <form method="post">

@@ -86,7 +86,7 @@
         <input type="submit" name="submitListe" value="Ajouter">
     </form>
     <!-- <form action="index.php" method="POST" autocomplete="off">
-        <input type="text" name="liste" placeholder="Donner un titre à la liste">
+        <input type="text" name="liste" placeholder="Donner un nomTache à la liste">
         <input type="submit" value="Ajouter la liste">
 </form> -->
 

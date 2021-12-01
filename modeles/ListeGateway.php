@@ -40,7 +40,7 @@ private $connexion;
 //           //$count->execute();
 //           //$idTache = $count->fetchAll();
 //           echo $idTache;
-//           $query = "INSERT INTO Todoux VALUES(:titre, :description, :idTache, :idUser)";
+//           $query = "INSERT INTO Todoux VALUES(:nomTache, :descriptionTache, :idTache, :idUser)";
 //         }
 
 //         function creerListeBDD($nomListe){
