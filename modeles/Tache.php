@@ -4,16 +4,12 @@ class Tache{
 	private $idUser;
 	private $titre;
 	private $description;
-	private $dateAjout;
-	private $dateExpiration;
 
-	function __construct (int $idTache, int $idUser, string $titre, string $description, string $dateAjout, string $dateExpiration){
+	function __construct (int $idTache, int $idUser, string $titre, string $description){
 		$this->idTache = $idTache;
 		$this->idUser = $idUser;
 		$this->titre = $titre;
 		$this->description = $description;
-		$this->dateAjout = $dateAjout;
-		$this->dateExpiration = $dateExpiration;
 	}
 	public function getidUser(){
 		return $this->idUser;
@@ -29,9 +25,6 @@ class Tache{
 	}
 	public function getdateAjout(){
 		return $this->dateAjout;
-	}
-	public function getdateExpiration(){
-		return $this->dateExpiration;
 	}
 	
 }
