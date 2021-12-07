@@ -11,8 +11,8 @@ private $connexion;
     public function addList($nomList){
     
         echo 1;
-        $query = "INSERT INTO `list`(`nomList`) VALUES (:nomList)";
-        
+        //$query = "INSERT INTO list VALUES (:nomList)";
+        $query = ("INSERT INTO `list`(`nomList`) VALUES (:nomList)");
         echo 2;
         $this->connexion->executeQuery($query, array(
             ':nomList' => array($nomList, PDO::PARAM_STR)));

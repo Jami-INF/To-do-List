@@ -102,7 +102,7 @@
     border: none;
     border-radius: 12px;
     transition: all 0.5s ease;
-    background: #1d1b31;
+    background: #535353;
   }
   .sidebar.open input{
     padding: 0 20px 0 50px;
@@ -114,8 +114,25 @@
     left: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    background: #1d1b31;
+    background: #535353;
     color: #f5a623;
+  }
+  .sidebar .bx-search{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    background: #535353;
+    color: #f5a623;
+  }
+  .sidebar.open .bx-search:hover{
+    background: #535353;
+    color: #f5a623;
+  }
+  .sidebar .bx-search:hover{
+    background: #FFF;
+    color: #11101d;
   }
   .sidebar li a{
     display: flex;
