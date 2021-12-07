@@ -16,6 +16,11 @@
     </div>
     <ul class="nav-list">
       <li>
+         <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Recherche...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
         <a href="index.php">
          <i class='bx bx-home-alt' ></i>
          <p class="links_name">Accueil</p>

@@ -16,6 +16,11 @@
     </div>
     <ul class="nav-list">
       <li>
+         <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Recherche...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
         <a href="index.php">
          <i class='bx bx-home-alt' ></i>
          <p class="links_name">Accueil</p>
@@ -111,9 +116,9 @@
 
       if(isset($_POST['nomListe'])){
           $nomListe = $_POST['nomListe'];
-          // $liste = new ListeGateway($db);
-          // $liste->addList($nomListe);
-          // $liste->getList();
+          $liste = new ListeGateway($db);
+          $liste->addList($nomListe);
+          $liste->getList();
       }else{
           echo "Veuillez remplir le nom de la liste";
       }
@@ -128,10 +133,10 @@
       // echo ('inssertion réussi');
       // echo 3;
       
-      $query = "SELECT * FROM list";
-      $result = $db->executeQuery($query);
-      // echo 5;
-      echo $result;
+      // $query = "SELECT * FROM list";
+      // $result = $db->executeQuery($query);
+      // // echo 5;
+      // echo $result;
 
 
 
