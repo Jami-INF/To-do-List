@@ -89,11 +89,12 @@
         $dsn = 'localhost';
         $dbname = 'todoux';
         $db = new Connection($dsn, $dbname, $username, $password);
-        echo "connection réussi";
+        //echo "connection réussi";
         }catch(PDOException $e){ 
           echo "connection refusé";
         } 
         require (__DIR__.'/modeles/Tache.php');
+        /*
         $t1 = new Tache(12,'nomTache', 'descriptionTache');
         $t2 = new Tache(12,'nomTachefgqfgqfdgqdfgqdf', 'descriptionTache2');
         $t3 = new Tache(3,'nomTache', 'descriptionTache3');
@@ -107,20 +108,7 @@
         //$test->execute();
         
         $query = "INSERT INTO Todoux VALUES(:nomTache, :descriptionTachess, :idList)";
-
-        //$db->executeQuery($query,array(
-        //  ':nomTache' => array($nomTache, PDO::PARAM_STR),
-        //  ':descriptionTachess' => array($descriptionTachess, PDO::PARAM_STR),
-        //  ':idList' => array($idList, PDO::PARAM_INT),
-        //));
-        
-        foreach ($TTaches as $tache){
-          echo "<br>";
-          echo $tache->getnomTache();
-          echo "zebi";
-          echo "<br>";
-        }
-        
+        */
       ?>
       <a class="butonacueil" href="newTache.php">
         <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>

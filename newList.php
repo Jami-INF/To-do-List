@@ -113,7 +113,9 @@
     }catch(PDOException $e){ 
       echo "connection refusé";
     }
-
+    filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
+    
+    if(isset($_POST['submitListe'])){
       if(isset($_POST['nomListe'])){
           $nomListe = $_POST['nomListe'];
           $liste = new ListeGateway($db);
@@ -122,6 +124,7 @@
       }else{
           echo "Veuillez remplir le nom de la liste";
       }
+    }
 
     
       // echo 1;
