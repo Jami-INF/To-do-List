@@ -24,6 +24,8 @@ class UtilisateurGateway {
         foreach ($resultat as $value) {
             $idUser = $value['idUser'];
             return $idUser;
+
+        $pswd = md5($_POST['password']); // md5 hashe le mot de passe, il faut comparer le mdp crypté avec le mot de passe en bdd issu de la requete
         }
     }
 }
