@@ -18,7 +18,7 @@
       <li>
          <i class='bx bx-search' ></i>
          <input type="text" placeholder="Recherche...">
-         <span class="tooltip">Search</span>
+         <span class="tooltip">Rechercher</span>
       </li>
       <li>
         <a href="index.php">
