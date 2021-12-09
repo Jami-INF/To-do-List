@@ -16,11 +16,14 @@
   <section>
     <div class="main">
       <h2>Connection</h2>
-      <form class="form-add-list" action="connection.php" method="post">
-        <input type="email" name="adresse_mail" placeholder="Adresse Email">
-        <input type="password" name="password" placeholder="Mot de passe">
-        <input type="submit" name="submitConnexion" value="Connexion">
-      </form>
+      <div class="formulaire">
+        <form class="form-add-list" action="connection.php" method="post">
+          <input type="email" name="adresse_mail" placeholder="Adresse Email">
+          <input type="password" name="password" placeholder="Mot de passe">
+          <input type="submit" name="submitConnexion" value="Connexion">
+        </form>
+      </div>
+     
       <a class="butonacueil" href="inscription.php">
         <button type="button" name="button" class="btn btn-primary" id="btn">Inscription</button>
       </a>

@@ -79,77 +79,70 @@
     </ul>
   </div>
   <section class="home-section">
-
     <div class="main">
-    <a href="index.php">
-        <h1>ToDoux Liste</h1>
-      </a>
-    <h2>Nouvelle liste</h2>
-    <div class="formulaire">
-      <form action="newList.php" method="POST">
-          <input type="text" name="nomListe" placeholder="Nom de la liste">
-          <input type="submit" name="submitListe" value="Ajouter">
-      </form>
-    </div>
-    <!-- <form action="index.php" method="POST" autocomplete="off">
-        <input type="text" name="liste" placeholder="Donner un nomTache à la liste">
-        <input type="submit" value="Ajouter la liste">
-</form> -->
+        <h1>Nom de la liste</h1>
 
 
+	<?php
+        require (__DIR__.'/config/Connection.php');
 
-
+        try{
+        $username = 'root';
+        $password = '';
+        $dsn = 'localhost';
+        $dbname = 'todoux';
+        $db = new Connection($dsn, $dbname, $username, $password);
+        //echo "connection réussi";
+        }catch(PDOException $e){ 
+          echo "connection refusé";
+        } 
+        require (__DIR__.'/modeles/Tache.php');
     
-    <?php
-    require_once(__DIR__.'/config/Connection.php');
-    require_once(__DIR__.'/modeles/ListeGateway.php');
-
-    try{
-    $username = 'root';
-    $password = '';
-    $dsn = 'localhost';
-    $dbname = 'todoux';
-    $db = new Connection($dsn, $dbname, $username, $password);
-    echo "connection réussi";
-    }catch(PDOException $e){ 
-      echo "connection refusé";
-    }
-    filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
-    
-    if(isset($_POST['submitListe'])){
-      if(isset($_POST['nomListe'])){
-          $nomListe = $_POST['nomListe'];
-          $liste = new ListeGateway($db);
-          $liste->addList($nomListe);
-          //$liste->getList();
-      }else{
-          echo "Veuillez remplir le nom de la liste";
-      }
-    }
-
-    
-      // echo 1;
-      // $nomListe=$_POST['nomListe'];
-      // $query = "INSERT INTO list VALUES (:nomList)";
-      // echo 4;
-      // $db->executeQuery($query, array(
-      //     ':nomList' => array($nomListe, PDO::PARAM_STR)));
-      // echo ('inssertion réussi');
-      // echo 3;
+      require_once(__DIR__.'/modeles/TacheGateway.php');
+      $query = "SELECT * FROM Todoux";
+      $param =[];
+      $db->executeQuery($query, $param);
+      $result=$db->getResults();
+      ?>
+        <div class="flexbox">
+        <?php
+      foreach ($result as $row) {
       
-      // $query = "SELECT * FROM list";
-      // $result = $db->executeQuery($query);
-      // // echo 5;
-      // echo $result;
+        echo '<div class="flexboxitem">';
+        echo "<h3>".$row['nomTache']."</h3>";
+        echo "<p>".$row['descriptionTache']."</p>";
+        echo '<div class="itemlist">';
+        echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
+        echo "<button><i class='bx bx-trash'></i></button>";
+        echo "</div>";
+        echo "</div>";
+
+        if (isset($_POST['supp'])) {
+          $tache = new TacheGateway ($db);
+          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
+        }
+
+      }
+      ?>
+    </div>
+
+
+        <!-- echo '<div class="flexboxitem">';
+        echo "<h3>".$row['nomTache']."</h3>";
+        echo "<p>".$row['descriptionTache']."</p>";
+        echo '<div class="itemlist">';
+        echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
+        echo "<button><i class='bx bx-trash'></i></button>";
+        echo "</div>";
+        echo "</div>"; -->
 
 
 
-
-
-
-    ?>
+    <!-------------->
+      <a class="butonacueil" href="newTache.php">
+        <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>
+      </a>
     </div>     
-
   </section>
   <script src="script.js"></script>
 </body>
