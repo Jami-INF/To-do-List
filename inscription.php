@@ -71,10 +71,8 @@
                 if(!empty($_POST['verif_adresse_mail'])){
                   if($_POST['adresse_mail'] == $_POST['verif_adresse_mail']){
                     if($_POST['password'] == $_POST['verif_password']){
-                      $pswd = md5($_POST['password']);
 
-
-                      $utilisateur = new Utilisateur($_POST['adresse_mail'],$pswd);
+                      $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
                       $utilisateurGateway = new UtilisateurGateway($db);
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse(), $db);
 
