@@ -1,0 +1,5 @@
+-vérifier lors de l'inscription que l'email n'est pas déjà utilisé
+-mettre $con en global
+-on passe aux gateway la $con dans constrcut
+- la gateway ne reçoit que des paramètres finaux, elle ne fait pas de convertir
+	mdp claire en crypté

@@ -31,45 +31,12 @@
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
     <?php
-      require_once(__DIR__.'/config/Connection.php');
-      require (__DIR__.'/modeles/Utilisateur.php');
-      require (__DIR__.'/modeles/UtilisateurGateway.php');
-
-
-      try{
-      $username = 'root';
-      $password = '';
-      $dsn = 'localhost';
-      $dbname = 'todoux';
-      $db = new Connection($dsn, $dbname, $username, $password);
-      echo "connection réussi";
-      }catch(PDOException $e){ 
-        echo "connection refusé";
-      }
-
-      filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
-      filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-
-      if(isset($_POST['submitConnexion'])){
-        $email = $_POST['adresse_mail'];
-        $password = $_POST['password'];
-        $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-        $utilisateurGateway = new UtilisateurGateway($db);
-        $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(), $utilisateur->getMotDePasse(), $db);
-        echo $utilisateurRep;
-        if($utilisateurRep!=NULL){
-          echo "bon utilisateur";
-          header('Location: accueil.php');
-        }else{
-          echo "mauvais utilisateur";
-        }
-      }
-        
-    
-
-
+      require_once(__DIR__.'/controller/inscriptionConnectionController.php');
+      require (__DIR__.'/modeles/indexGateway.php');
+      
+      $icController = new inscriptionConnectionController();
+      $icController->connection($db);
     ?>
-
     </div>     
 
   </section>

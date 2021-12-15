@@ -14,6 +14,7 @@
       <p class="logo_name">ToDoux Liste</p>
       <i class='bx bx-menu' id="btn" ></i>
     </div>
+    
     <ul class="nav-list">
       <li>
          <i class='bx bx-search' ></i>
@@ -84,20 +85,8 @@
 
 
 	<?php
-        require (__DIR__.'/config/Connection.php');
 
-        try{
-        $username = 'root';
-        $password = '';
-        $dsn = 'localhost';
-        $dbname = 'todoux';
-        $db = new Connection($dsn, $dbname, $username, $password);
-        //echo "connection réussi";
-        }catch(PDOException $e){ 
-          echo "connection refusé";
-        } 
-        require (__DIR__.'/modeles/Tache.php');
-    
+      require (__DIR__.'/modeles/Tache.php');
       require_once(__DIR__.'/modeles/TacheGateway.php');
       $query = "SELECT * FROM Todoux";
       $param =[];

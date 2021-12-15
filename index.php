@@ -1,3 +1,8 @@
+<?php
+  $indexGateway = new indexGateway();
+  $indexGateway->connection();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,7 +13,6 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-  
   <section>
     <header>
       <a class="butonacueil" href="inscription.php">
@@ -24,7 +28,6 @@
     <div class="main">
       <h1>To Do List</h1>
     </div>  
-
   </section>
   <script src="script.js"></script>
 </body>

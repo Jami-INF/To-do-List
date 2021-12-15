@@ -1,13 +1,12 @@
 <?php
 class UtilisateurGateway {
-    private $connexion;
+    
 
-    public function __construct($connexion) {
-        $this->connexion = $connexion;
+    public function __construct($con) {
+        $this->connexion = $con;
     }
 
-    public function addUser($email, $pswd, $con){
-        $mdp = md5($pswd);
+    public function addUser($email, $mdp, $con){
         $query = "INSERT INTO utilisateur (email, mdp) VALUES (:email, :mdp)";
         $con->executeQuery($query, array(
             ':email' => array ($email,PDO::PARAM_STR),
@@ -16,7 +15,6 @@ class UtilisateurGateway {
     }
 
     public function findUser($email, $mdp, $con){
-        $mdp = md5($mdp);
         $query = "SELECT idUser FROM utilisateur WHERE email = :email AND mdp = :mdp";
         $con->executeQuery($query, array(
             ':email' => array ($email,PDO::PARAM_STR),
@@ -27,7 +25,7 @@ class UtilisateurGateway {
             $idUser = $value['idUser'];
             return $idUser;
 
-        //$pswd = md5($_POST['password']); // md5 hashe le mot de passe, il faut comparer le mdp crypté avec le mot de passe en bdd issu de la requete
+        $pswd = md5($_POST['password']); // md5 hashe le mot de passe, il faut comparer le mdp crypté avec le mot de passe en bdd issu de la requete
         }
     }
 }
