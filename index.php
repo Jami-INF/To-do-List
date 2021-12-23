@@ -3,6 +3,22 @@
   //autoloader pour instancier la var global $db
   $indexGateway = new indexGateway();
   $indexGateway->initalisationConnexion();
+
+  /*AUTOLOADER
+  //si controller pas objet
+  //  header('Location: controller/controller.php');
+
+  //si controller objet
+
+  //chargement config
+  require_once(__DIR__.'/config/config.php');
+
+  //chargement autoloader pour autochargement des classes
+  require_once(__DIR__.'/config/Autoload.php');
+  Autoload::charger();
+
+  $cont = new Controleur();
+  */
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
