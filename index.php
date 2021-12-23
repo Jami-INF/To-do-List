@@ -1,8 +1,9 @@
 <?php
+  require_once (__DIR__.'/modeles/indexGateway.php');
+  //autoloader pour instancier la var global $db
   $indexGateway = new indexGateway();
-  $indexGateway->connection();
+  $indexGateway->initalisationConnexion();
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

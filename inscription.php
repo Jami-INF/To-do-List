@@ -35,9 +35,8 @@
       <?php
         require_once(__DIR__.'/controller/inscriptionConnectionController.php');
         require (__DIR__.'/modeles/indexGateway.php');
-  
         $icController = new inscriptionConnectionController();
-        $icController->inscription($db);
+        $icController->inscription();
       ?>
     </div>     
 

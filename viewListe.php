@@ -14,7 +14,6 @@
       <p class="logo_name">ToDoux Liste</p>
       <i class='bx bx-menu' id="btn" ></i>
     </div>
-    
     <ul class="nav-list">
       <li>
          <i class='bx bx-search' ></i>
@@ -85,7 +84,6 @@
 
 
 	<?php
-
       require (__DIR__.'/modeles/Tache.php');
       require_once(__DIR__.'/modeles/TacheGateway.php');
       $query = "SELECT * FROM Todoux";

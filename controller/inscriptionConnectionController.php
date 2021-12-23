@@ -1,14 +1,13 @@
 <?php
 
-    require_once(__DIR__.'/config/Connection.php');
-    require (__DIR__.'/modeles/Utilisateur.php');
-    require (__DIR__.'/modeles/UtilisateurGateway.php');
+    require (__DIR__.'../../modeles/Utilisateur.php');
+    require (__DIR__.'../../modeles/UtilisateurGateway.php');
 
     class inscriptionConnectionController{
         public function __construct(){
             
         }
-        public function inscription($db){
+        public function inscription(){
           filter_var($_POST['adresse_mail'], FILTER_VALIDATE_EMAIL);
           filter_var($_POST['verif_adresse_mail'], FILTER_VALIDATE_EMAIL);
           filter_var($_POST['password'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9]{6,}$/")));
@@ -26,12 +25,10 @@
                 if(!empty($_POST['verif_adresse_mail'])){
                   if($_POST['adresse_mail'] == $_POST['verif_adresse_mail']){
                     if($_POST['password'] == $_POST['verif_password']){
-                      $pswd = md5($_POST['password']);
-
-
-                      $utilisateur = new Utilisateur($_POST['adresse_mail'],$pswd);
-                      $utilisateurGateway = new UtilisateurGateway($db);
-                      $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse(), $db);
+                    
+                      $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+                      $utilisateurGateway = new UtilisateurGateway();
+                      $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
 
                       echo "<p>Vous êtes inscrit</p>";
                     }
@@ -59,8 +56,7 @@
           }
 
         }
-        public function connection($db){
-
+        public function connection(){
             filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
             filter_var($_POST['password'], FILTER_SANITIZE_STRING, array("options"=>array("regexp"=>"/^[a-zA-Z0-9]{6,}$/")));
             $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
@@ -71,8 +67,8 @@
                     
                         $pswd = md5($_POST['password']);
                         $utilisateur = new Utilisateur($_POST['adresse_mail'],$pswd);
-                        $utilisateurGateway = new UtilisateurGateway($db);
-                        $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse(), $db);
+                        $utilisateurGateway = new UtilisateurGateway();
+                        $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
                         echo "<p>Vous êtes connecté</p>";
                   }
                 }else{
