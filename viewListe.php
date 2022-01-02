@@ -88,8 +88,8 @@
       require_once(__DIR__.'/modeles/TacheGateway.php');
       $query = "SELECT * FROM Todoux";
       $param =[];
-      $db->executeQuery($query, $param);
-      $result=$db->getResults();
+      $con->executeQuery($query, $param);
+      $result=$con->getResults();
       ?>
         <div class="flexbox">
         <?php
@@ -105,8 +105,8 @@
         echo "</div>";
 
         if (isset($_POST['supp'])) {
-          $tache = new TacheGateway ($db);
-          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
+          $tache = new TacheGateway ($con);
+          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $con);
         }
 
       }

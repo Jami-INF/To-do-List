@@ -17,7 +17,7 @@
     <div class="main">
       <h2>Connection</h2>
       <div class="formulaire">
-        <form class="form-add-list" action="connection.php" method="post">
+        <form class="form-add-list" action="vueConnection.php" method="post">
           <input type="email" name="adresse_mail" placeholder="Adresse Email">
           <input type="password" name="password" placeholder="Mot de passe">
           <input type="submit" name="submitConnexion" value="Connexion">

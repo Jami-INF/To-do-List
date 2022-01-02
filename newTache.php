@@ -100,8 +100,8 @@
         $username = 'root';
         $password = '';
         $dsn = 'localhost';
-        $dbname = 'todoux';
-        $db = new Connection($dsn, $dbname, $username, $password);
+        $conname = 'todoux';
+        $con = new Connection($dsn, $conname, $username, $password);
         echo "connection réussi";
         }catch(PDOException $e){ 
           echo "connection refusé";
@@ -114,15 +114,15 @@
     filter_var($_POST['idUser'], FILTER_SANITIZE_NUMBER_INT);
 
     if (isset($_POST['submit'])) {
-      $tache = new TacheGateway ($db);
-      $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $db);
+      $tache = new TacheGateway ($con);
+      $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $con);
     }
 
     // if (isset($_POST['submit'])) {
     //   if(!empty($_POST['nomTache'])){
     //     if(!empty($_POST['descriptionTache'])){
     //       if(!empty($_POST['idUser'])){
-    //         $tache = new TacheGateway($db);
+    //         $tache = new TacheGateway($con);
     //         $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser']);
     //       }else{
     //         echo "veuillez remplir le champ idUser";

@@ -80,66 +80,7 @@
   </div>
   <section class="home-section">
     <div class="main">
-	<?php
-        require (__DIR__.'/config/Connection.php');
 
-        global $db;
-        require (__DIR__.'/modeles/Tache.php');
-        /*
-        $t1 = new Tache(12,'nomTache', 'descriptionTache');
-        $t2 = new Tache(12,'nomTachefgqfgqfdgqdfgqdf', 'descriptionTache2');
-        $t3 = new Tache(3,'nomTache', 'descriptionTache3');
-        $TTaches = array($t1, $t2, $t3);
-
-        //$idTache = $t1->getidtache();
-        $idList = $t1->getidlist();
-        $nomTache = $t1->getnomTache();
-        $descriptionTachess = $t1->getdescriptionTache();
-        //$test = $db->prepare ("SELECT * FROM Todoux");
-        //$test->execute();
-        
-        $query = "INSERT INTO Todoux VALUES(:nomTache, :descriptionTachess, :idList)";
-        */
-      ?>
-      <a class="butonacueil" href="newTache.php">
-        <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>
-      </a>
-      <?php
-      require_once(__DIR__.'/modeles/TacheGateway.php');
-      $query = "SELECT * FROM Todoux";
-      $param =[];
-      $db->executeQuery($query, $param);
-      $result=$db->getResults();
-      
-      foreach ($result as $row) { 
-        
-        if (isset($_POST['supp'])) {
-          $tache = new TacheGateway ($db);
-          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $db);
-        }
-
-        echo "<br>";
-        echo $row['nomTache'];
-        echo "<br>";
-        echo $row['descriptionTache'];
-        echo "<br>";
-        echo $row['idList'];
-        echo "<br>";
- 
-        ?>
-        <div>
-          
-        </div>
-
-        
-        <form method="post">
-          <a class="butonacueil">
-          <button type="submit" name="supp" id="add_btn" class="add_btn">Supprimer TOUTE les tache</button>
-        </form>
-      </a>
-      <?php
-      }
-      ?>
       
     </div>     
 

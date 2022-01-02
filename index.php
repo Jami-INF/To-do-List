@@ -1,8 +1,13 @@
 <?php
+
+  require_once(__DIR__.'/config/Identification.php');
   require_once(__DIR__.'/config/Autoload.php');
   Autoload::charger();
-  session_start();
-  //autoloader pour instancier la var global $db
+
+  //require_once(__DIR__.'/controller/frontController.php');
+  $cont = new frontController();
+
+  //autoloader pour instancier la var global $con
   //$indexGateway = new indexGateway();
   //$indexGateway->initalisationConnexion();
 
@@ -40,7 +45,7 @@
       <a class="butonacueil" href="accueil.php">
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
-      <a class="butonacueil" href="connection.php">
+      <a class="butonacueil" href="vueConnection.php">
         <button type="button" name="button" class="btn btn-primary" id="btn">Connection</button>
       </a>
     </header>

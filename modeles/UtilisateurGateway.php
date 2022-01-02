@@ -1,30 +1,45 @@
 <?php
 class UtilisateurGateway {
-
-    public function __construct() {
+    private $con;
+    public function __construct()//$c=null
+    {
+        require(__DIR__.'/../config/Autoload.php');
+        Autoload::charger();
+        //global $username, $password, $dsn, $conname;
+        try{
+            //global $con;
+             $username = 'root';
+             $password = '';
+             $dsn = 'localhost';
+             $conname = 'todoux';
+            
+            $this->con = new Connection($dsn, $conname, $username, $password);
+        }catch(PDOException $e){ 
+            echo "connection refusé";
+        } 
         
     }
 
     public function addUser($email, $pswd){
-        global $db;
-        //var_dump($db);
+        //global $con;
+        //var_dump($con);
         $mdp = md5($pswd);
         $query = "INSERT INTO utilisateur (email, mdp) VALUES (:email, :mdp)";
-        $db->executeQuery($query, array(
+        $this->con->executeQuery($query, array(
             ':email' => array ($email,PDO::PARAM_STR),
             ':mdp' => array ($mdp,PDO::PARAM_STR)
         ));
     }
 
     public function findUser($email, $mdp){
-        global $db;
+        //global $con;
         $mdp = md5($mdp);
         $query = "SELECT idUser FROM utilisateur WHERE email = :email AND mdp = :mdp";
-        $db->executeQuery($query, array(
+        $this->con->executeQuery($query, array(
             ':email' => array ($email,PDO::PARAM_STR),
             ':mdp' => array ($mdp,PDO::PARAM_STR)
         ));
-        $resultat = $db->getResults(); 
+        $resultat = $this->con->getResults(); 
         foreach ($resultat as $value) {
             $idUser = $value['idUser'];
             return $idUser;

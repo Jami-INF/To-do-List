@@ -108,8 +108,8 @@
     $username = 'root';
     $password = '';
     $dsn = 'localhost';
-    $dbname = 'todoux';
-    $db = new Connection($dsn, $dbname, $username, $password);
+    $conname = 'todoux';
+    $con = new Connection($dsn, $conname, $username, $password);
     echo "connection réussi";
     }catch(PDOException $e){ 
       echo "connection refusé";
@@ -119,7 +119,7 @@
     if(isset($_POST['submitListe'])){
       if(isset($_POST['nomListe'])){
           $nomListe = $_POST['nomListe'];
-          $liste = new ListeGateway($db);
+          $liste = new ListeGateway($con);
           $liste->addList($nomListe);
           //$liste->getList();
       }else{
@@ -132,13 +132,13 @@
       // $nomListe=$_POST['nomListe'];
       // $query = "INSERT INTO list VALUES (:nomList)";
       // echo 4;
-      // $db->executeQuery($query, array(
+      // $con->executeQuery($query, array(
       //     ':nomList' => array($nomListe, PDO::PARAM_STR)));
       // echo ('inssertion réussi');
       // echo 3;
       
       // $query = "SELECT * FROM list";
-      // $result = $db->executeQuery($query);
+      // $result = $con->executeQuery($query);
       // // echo 5;
       // echo $result;
 

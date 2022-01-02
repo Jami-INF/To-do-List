@@ -25,7 +25,7 @@
     </div>
 
 
-      <a class="butonacueil" href="connection.php">
+      <a class="butonacueil" href="vueConnection.php">
         <button type="button" name="button" class="btn btn-primary" id="btn">Connection</button>
       </a>
       <a class="butonacueil" href="accueil.php">

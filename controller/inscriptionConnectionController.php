@@ -29,6 +29,8 @@
                       $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
                       $utilisateurGateway = new UtilisateurGateway();
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
+                      header('Location: accueil.php');
+                      
 
                       echo "<p>Vous êtes inscrit</p>";
                     }
