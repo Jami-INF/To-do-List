@@ -79,18 +79,18 @@
             }
 
 
-            // if(isset($_POST['submitConnexion'])){
-            //     $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-            //     $utilisateurGateway = new UtilisateurGateway($db);
-            //     $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(), $utilisateur->getMotDePasse(), $db);
-            //     echo $utilisateurRep;
-            //     if($utilisateurRep!=NULL){
-            //     echo "bon utilisateur";
-            //     header('Location: accueil.php');
-            //     }else{
-            //     echo "mauvais utilisateur";
-            //     }
-            // }
+             if(isset($_POST['submitConnexion'])){
+                 $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+                 $utilisateurGateway = new UtilisateurGateway();
+                 $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
+                 echo $utilisateurRep;
+                 if($utilisateurRep!=NULL){
+                 echo "bon utilisateur";
+                 header('Location: accueil.php');
+                 }else{
+                 echo "mauvais utilisateur";
+                 }
+             }
         
         }
     }

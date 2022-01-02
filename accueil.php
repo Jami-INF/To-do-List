@@ -83,16 +83,7 @@
 	<?php
         require (__DIR__.'/config/Connection.php');
 
-        try{
-        $username = 'root';
-        $password = '';
-        $dsn = 'localhost';
-        $dbname = 'todoux';
-        $db = new Connection($dsn, $dbname, $username, $password);
-        //echo "connection réussi";
-        }catch(PDOException $e){ 
-          echo "connection refusé";
-        } 
+        global $db;
         require (__DIR__.'/modeles/Tache.php');
         /*
         $t1 = new Tache(12,'nomTache', 'descriptionTache');

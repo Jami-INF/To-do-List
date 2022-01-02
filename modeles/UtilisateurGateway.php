@@ -7,7 +7,7 @@ class UtilisateurGateway {
 
     public function addUser($email, $pswd){
         global $db;
-        var_dump($db);
+        //var_dump($db);
         $mdp = md5($pswd);
         $query = "INSERT INTO utilisateur (email, mdp) VALUES (:email, :mdp)";
         $db->executeQuery($query, array(

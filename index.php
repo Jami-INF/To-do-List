@@ -1,9 +1,10 @@
 <?php
   require_once(__DIR__.'/config/Autoload.php');
   Autoload::charger();
+  session_start();
   //autoloader pour instancier la var global $db
-  $indexGateway = new indexGateway();
-  $indexGateway->initalisationConnexion();
+  //$indexGateway = new indexGateway();
+  //$indexGateway->initalisationConnexion();
 
   /*AUTOLOADER
   //si controller pas objet
