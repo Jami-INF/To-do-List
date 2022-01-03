@@ -20,7 +20,12 @@
         <form class="form-add-list" action="vueConnection.php" method="post">
           <input type="email" name="adresse_mail" placeholder="Adresse Email">
           <input type="password" name="password" placeholder="Mot de passe">
-          <input type="submit" name="submitConnexion" value="Connexion">
+            <!-- <input type="submit" name="submitConnexion" value="Connexion"> -->
+            <a href="?action=connection">
+              <!-- <input type="submit" name="action" value="connection">yayaya -->
+              connection
+            </a>
+            
         </form>
       </div>
      
@@ -33,8 +38,8 @@
     <?php
       require_once(__DIR__.'/controller/inscriptionConnectionController.php');
       require (__DIR__.'/modeles/indexGateway.php');
-      $icController = new inscriptionConnectionController();
-      $icController->connection();
+      //$icController = new inscriptionConnectionController();
+      //$icController->connection();
     ?>
     </div>     
 

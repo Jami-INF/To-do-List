@@ -4,8 +4,9 @@
     require (__DIR__.'../../modeles/UtilisateurGateway.php');
 
     class inscriptionConnectionController{
-        public function __construct(){
-            
+      private $con;
+        public function __construct($con){
+            $this->con = $con;
         }
         public function inscription(){
           filter_var($_POST['adresse_mail'], FILTER_VALIDATE_EMAIL);
@@ -27,7 +28,7 @@
                     if($_POST['password'] == $_POST['verif_password']){
                     
                       $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-                      $utilisateurGateway = new UtilisateurGateway();
+                      $utilisateurGateway = new UtilisateurGateway($con);
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
                       header('Location: accueil.php');
                       
@@ -59,40 +60,45 @@
 
         }
         public function connection(){
-            filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
-            filter_var($_POST['password'], FILTER_SANITIZE_STRING, array("options"=>array("regexp"=>"/^[a-zA-Z0-9]{6,}$/")));
-            $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
+          filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
+          filter_var($_POST['password'], FILTER_SANITIZE_STRING, array("options"=>array("regexp"=>"/^[a-zA-Z0-9]{6,}$/")));
+          $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
 
-            if(isset($_POST['submitConnection'])){
-                if(!empty($_POST['adresse_mail'])){
-                  if(!empty($_POST['password'])){
-                    
-                        $pswd = md5($_POST['password']);
-                        $utilisateur = new Utilisateur($_POST['adresse_mail'],$pswd);
-                        $utilisateurGateway = new UtilisateurGateway();
-                        $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
-                        echo "<p>Vous êtes connecté</p>";
+          if(isset($_POST['submitConnexion'])){
+              if(!empty($_POST['adresse_mail'])){
+                if(!empty($_POST['password'])){
+                  
+                  $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+                  $utilisateurGateway = new UtilisateurGateway();
+                  $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
+                  echo $utilisateurRep;
+                  if($utilisateurRep!=NULL){
+                  echo "bon utilisateur";
+                  header('Location: accueil.php');
+                  }else{
+                  echo "mauvais utilisateur";
                   }
-                }else{
-                  if (!preg_match($expression, $_POST['adresse_mail'])) {
-                    echo "<p>Le format de l'email n'est pas correct!</p>";
-                   }
                 }
-            }
-
-
-             if(isset($_POST['submitConnexion'])){
-                 $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-                 $utilisateurGateway = new UtilisateurGateway();
-                 $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
-                 echo $utilisateurRep;
-                 if($utilisateurRep!=NULL){
-                 echo "bon utilisateur";
-                 header('Location: accueil.php');
-                 }else{
-                 echo "mauvais utilisateur";
+              }else{
+                if (!preg_match($expression, $_POST['adresse_mail'])) {
+                  echo "<p>Le format de l'email n'est pas correct!</p>";
                  }
-             }
+              }
+          }
+      
+      
+            //  if(isset($_POST['submitConnexion'])){
+            //      $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
+            //      $utilisateurGateway = new UtilisateurGateway($con);
+            //      $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
+            //      echo $utilisateurRep;
+            //      if($utilisateurRep!=NULL){
+            //      echo "bon utilisateur";
+            //      header('Location: accueil.php');
+            //      }else{
+            //      echo "mauvais utilisateur";
+            //      }
+            //  }
         
         }
     }

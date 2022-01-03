@@ -14,6 +14,7 @@
                 $dsn = 'localhost';
                 $conname = 'todoux';
                 $con = new Connection($dsn, $conname, $username, $password);
+                return $con;
             }catch(PDOException $e){ 
                 echo "connection refusé";
             } 

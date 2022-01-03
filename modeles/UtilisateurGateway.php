@@ -1,19 +1,28 @@
 <?php
 class UtilisateurGateway {
     private $con;
-    public function __construct()//$c=null
+    public function __construct($con)//$c=null
+
     {
         require(__DIR__.'/../config/Autoload.php');
         Autoload::charger();
         //global $username, $password, $dsn, $conname;
+        
         try{
-            //global $con;
-             $username = 'root';
-             $password = '';
-             $dsn = 'localhost';
-             $conname = 'todoux';
+            if($con != null){
+
+                $this->con = $con;
+            }
+            else{
+                //global $con;
+                $username = 'root';
+                $password = '';
+                $dsn = 'localhost';
+                $conname = 'todoux';
             
-            $this->con = new Connection($dsn, $conname, $username, $password);
+                $this->con = new Connection($dsn, $conname, $username, $password);
+            }
+            
         }catch(PDOException $e){ 
             echo "connection refusé";
         } 

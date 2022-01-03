@@ -1,10 +1,11 @@
 <?php
 
-public class ModelUser{
-    public function __construct(){
-        global $con;
-        $utilisateurGateway = new UtilisateurGateway($con);
-
+class controllerAdmin{
+    private $con;
+    private $action;
+    public function __construct($con, $action){
+        $this->con = $con;
+        $this->action = $action;
     }
     public function connection ($login, $password){
         $utilisateurGateway = new UtilisateurGateway($con, $login, $password);
@@ -13,7 +14,7 @@ public class ModelUser{
         $loginDB = this->utilisateurGateway->getLogin();
         $passwordDB = this->utilisateurGateway->getPassword();
         if($login == $loginDB && password_verify($password, $passwordDB)){
-            $_SESSION['role'] = 'user';
+            $_SESSION['role'] = 'admin';
             $_SESSION['login'] = $login;
         }
         else{
@@ -21,8 +22,8 @@ public class ModelUser{
         }
 
     }
-    public function isUser(){
-        if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+    public function isAdmin(){
+        if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
             return true;
         }
         return false;

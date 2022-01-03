@@ -2,10 +2,15 @@
 
   require_once(__DIR__.'/config/Identification.php');
   require_once(__DIR__.'/config/Autoload.php');
+  //chargement autoloader pour autochargement des classes
   Autoload::charger();
+  //instanciation de la classe indexGateway
+  //$con =indexGateway::initalisationConnexion();
+  $connection = new indexGateway();
+  $con = $connection->initalisationConnexion();
 
   //require_once(__DIR__.'/controller/frontController.php');
-  $cont = new frontController();
+  $cont = new frontController($con);
 
   //autoloader pour instancier la var global $con
   //$indexGateway = new indexGateway();
@@ -17,14 +22,7 @@
 
   //si controller objet
 
-  //chargement config
-  require_once(__DIR__.'/config/config.php');
 
-  //chargement autoloader pour autochargement des classes
-  require_once(__DIR__.'/config/Autoload.php');
-  Autoload::charger();
-
-  $cont = new Controleur();
   */
 ?>
 <!DOCTYPE html>
