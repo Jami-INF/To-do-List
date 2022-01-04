@@ -19,6 +19,12 @@ class controllerUser{
             case 'pageConnection':
                 require(__DIR__ . '/../vueConnection.php');
                 break;
+            case 'NewTachePage':
+                require(__DIR__ . '/../newTache.php');
+                break;
+            case 'NewListePage':
+                require(__DIR__ . '/../newList.php');
+                break;
             case 'pageInscription':
                 require(__DIR__ . '/../inscription.php');
                 break;

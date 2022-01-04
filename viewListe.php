@@ -105,7 +105,7 @@
         echo "</div>";
 
         if (isset($_POST['supp'])) {
-          $tache = new TacheGateway ($con);
+          $tache = new TacheGateway();
           $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $con);
         }
 

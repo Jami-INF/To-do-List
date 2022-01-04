@@ -94,27 +94,12 @@
       </form>
     </div>
     <?php
-    require (__DIR__.'/config/Connection.php');
-    require (__DIR__.'/modeles/Tache.php');
-        try{
-        $username = 'root';
-        $password = '';
-        $dsn = 'localhost';
-        $conname = 'todoux';
-        $con = new Connection($dsn, $conname, $username, $password);
-        echo "connection réussi";
-        }catch(PDOException $e){ 
-          echo "connection refusé";
-        } 
-
-    require_once(__DIR__.'/modeles/TacheGateway.php');
-
     filter_var($_POST['nomTache'], FILTER_SANITIZE_STRING);
     filter_var($_POST['descriptionTache'], FILTER_SANITIZE_STRING);
     filter_var($_POST['idUser'], FILTER_SANITIZE_NUMBER_INT);
 
     if (isset($_POST['submit'])) {
-      $tache = new TacheGateway ($con);
+      $tache = new TacheGateway();
       $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $con);
     }
 

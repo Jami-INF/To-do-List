@@ -3,7 +3,7 @@
 class FrontController {
     private $String_actor = "";
     private $listeActions = array(
-        'Utilisateur' => array('pageConnection','Accueil','pageInscription','pageInscription','connection', 'inscription', 'Deconnexion', 'creerListe', 'creerTache', 'validerTache', 'supprimerListe', 'supprimerTache'),
+        'Utilisateur' => array('NewListePage','NewTachePage','pageConnection','Accueil','pageInscription','pageInscription','connection', 'inscription', 'Deconnexion', 'creerListe', 'creerTache', 'validerTache', 'supprimerListe', 'supprimerTache'),
         'Administrateur' => array('supprimerUtilisateur' ) );
     // private $con ;
 

@@ -101,19 +101,6 @@
 
     
     <?php
-    require_once(__DIR__.'/config/Connection.php');
-    require_once(__DIR__.'/modeles/ListeGateway.php');
-
-    try{
-    $username = 'root';
-    $password = '';
-    $dsn = 'localhost';
-    $conname = 'todoux';
-    $con = new Connection($dsn, $conname, $username, $password);
-    echo "connection réussi";
-    }catch(PDOException $e){ 
-      echo "connection refusé";
-    }
     filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
     
     if(isset($_POST['submitListe'])){

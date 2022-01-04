@@ -63,7 +63,7 @@
       <p class="tooltip">List 3</p>
     </li>
      <li>
-       <a href="newList.php">
+       <a href="?action=NewListePage">
         <i class='bx bx-plus' ></i>
         <p class="links_name">Ajouter liste</p>
        </a>

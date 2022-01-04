@@ -3,16 +3,17 @@
 
 class ListeGateway{
 public $con;
-    require_once(__DIR__.'/../config/Connection.php');
     public function __construct()
     {
+        global $con, $username, $password, $dsn, $dbname;
         try{
-            global $con;
-            $username = 'root';
-            $password = '';
-            $dsn = 'localhost';
-            $conname = 'todoux';
-            $con = new Connection($dsn, $conname, $username, $password);
+            if($con != null){
+
+                $this->con = $con;
+            }
+            else{
+                $this->con = new Connection($dsn, $dbname, $username, $password);
+            }
         }catch(PDOException $e){ 
             echo "connection refusé";
         } 

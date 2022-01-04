@@ -8,7 +8,6 @@
             //Autoload::charger();
 
             try{
-                global $con;
                 $username = 'root';
                 $password = '';
                 $dsn = 'localhost';
