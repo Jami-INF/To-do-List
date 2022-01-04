@@ -1,11 +1,9 @@
 <?php
 class UtilisateurGateway {
     private $con;
-    public function __construct($con)//$c=null
-
-    {
-        require(__DIR__.'/../config/Autoload.php');
-        Autoload::charger();
+    public function __construct($con) {
+        // require(__DIR__.'/../config/Autoload.php');
+        // Autoload::charger();
         //global $username, $password, $dsn, $conname;
         
         try{

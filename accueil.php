@@ -80,7 +80,7 @@
   </div>
   <section class="home-section">
     <div class="main">
-
+      <h1>To Do List</h1>
       
     </div>     
 

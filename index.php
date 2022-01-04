@@ -5,16 +5,9 @@
   Autoload::charger();
   $connection = new indexGateway();
   $con = $connection->initalisationConnexion();
-  require_once(__DIR__.'/controller/frontController.php');
-  $cont = new frontController($con);
-  // if(isset($_GET['action'])){
-  //   echo 1;
-    
-  // }
-  // else{
-  //   echo 2;
-  //   header(" Location: vueConnection.php");
-  // }
+  // require_once(__DIR__.'/controller/frontController.php');
+  $cont = new frontController();
+
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">

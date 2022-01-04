@@ -15,7 +15,7 @@
       </a>
     <h2>Inscription</h2>
     <div class="formulaire">
-      <form class="form-add-list" action="inscription.php" method="post">
+      <form class="form-add-list" action="index.php?action=inscription" method="post">
         <input type="email" name="adresse_mail" placeholder="Adresse Email">
         <input type="email" name="verif_adresse_mail" placeholder="Retaper l'adresse Email">
         <input type="password" name="password" placeholder="Mot de passe">
@@ -25,18 +25,18 @@
     </div>
 
 
-      <a class="butonacueil" href="vueConnection.php">
+      <a class="butonacueil" href="?action=pageConnection">
         <button type="button" name="button" class="btn btn-primary" id="btn">Connection</button>
       </a>
-      <a class="butonacueil" href="accueil.php">
+      <a class="butonacueil" href="?action=Accueil">
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
 
       <?php
-        require_once(__DIR__.'/controller/inscriptionConnectionController.php');
-        require (__DIR__.'/modeles/indexGateway.php');
-        $icController = new inscriptionConnectionController();
-        $icController->inscription();
+        // require_once(__DIR__.'/controller/inscriptionConnectionController.php');
+        // require (__DIR__.'/modeles/indexGateway.php');
+        // $icController = new inscriptionConnectionController();
+        // $icController->inscription();
       ?>
     </div>     
 
