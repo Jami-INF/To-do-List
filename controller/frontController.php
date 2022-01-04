@@ -3,7 +3,7 @@
 class FrontController {
     private $String_actor = "";
     private $listeActions = array(
-        'Utilisateur' => array('Connexion', 'inscription', 'Deconnexion', 'creerListe', 'creerTache', 'validerTache', 'supprimerListe', 'supprimerTache'),
+        'Utilisateur' => array('pageConnection','pageInscription','Connexion', 'inscription', 'Deconnexion', 'creerListe', 'creerTache', 'validerTache', 'supprimerListe', 'supprimerTache'),
         'Administrateur' => array('supprimerUtilisateur' ) );
     private $con ;
 
@@ -14,12 +14,14 @@ class FrontController {
         try {
             if (empty($_GET['action'])) {
                 $action = null;
+                echo 'action est vide</br>';
             } else {
                 $action = $_GET['action'];
+                echo 'action est pas vide</br>';
             }
-            echo "FrontController 1 ok";
+            echo "FrontController avant </br>";
             new ControllerUser($con, $action);
-            echo "FrontController 2 ok";
+            echo "FrontController apres </br>";
             
         } catch (Exception $erreur) {
             $dataVueErreur[] = "Erreur inattendue";

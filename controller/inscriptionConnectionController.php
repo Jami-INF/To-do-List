@@ -28,7 +28,7 @@
                     if($_POST['password'] == $_POST['verif_password']){
                     
                       $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-                      $utilisateurGateway = new UtilisateurGateway($con);
+                      $utilisateurGateway = new UtilisateurGateway($this->con);
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
                       header('Location: accueil.php');
                       
@@ -60,16 +60,19 @@
 
         }
         public function connection(){
+          echo "1";
           filter_var($_POST['adresse_mail'], FILTER_SANITIZE_EMAIL);
           filter_var($_POST['password'], FILTER_SANITIZE_STRING, array("options"=>array("regexp"=>"/^[a-zA-Z0-9]{6,}$/")));
           $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
-
+          echo "2";
           if(isset($_POST['submitConnexion'])){
+            echo "3";
               if(!empty($_POST['adresse_mail'])){
+                echo "4";
                 if(!empty($_POST['password'])){
-                  
+                  echo "5";
                   $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
-                  $utilisateurGateway = new UtilisateurGateway();
+                  $utilisateurGateway = new UtilisateurGateway($this->con);
                   $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
                   echo $utilisateurRep;
                   if($utilisateurRep!=NULL){
@@ -83,8 +86,11 @@
                 if (!preg_match($expression, $_POST['adresse_mail'])) {
                   echo "<p>Le format de l'email n'est pas correct!</p>";
                  }
+                 echo "6";
               }
+              echo "7";
           }
+          echo "8";
       
       
             //  if(isset($_POST['submitConnexion'])){

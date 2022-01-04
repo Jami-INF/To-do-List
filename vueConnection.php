@@ -21,9 +21,10 @@
           <input type="email" name="adresse_mail" placeholder="Adresse Email">
           <input type="password" name="password" placeholder="Mot de passe">
             <!-- <input type="submit" name="submitConnexion" value="Connexion"> -->
+            <!-- <input type="submit" name="action" value="connection">yayaya -->
+            <!-- <input type="hidden" name="action" value="connection">yayaya -->
             <a href="?action=connection">
-              <!-- <input type="submit" name="action" value="connection">yayaya -->
-              connection
+              <input type="submit" name="submitConnexion" value="Connexion">
             </a>
             
         </form>
@@ -38,8 +39,12 @@
     <?php
       require_once(__DIR__.'/controller/inscriptionConnectionController.php');
       require (__DIR__.'/modeles/indexGateway.php');
+      //require_once(__DIR__.'/index.php');
       //$icController = new inscriptionConnectionController();
       //$icController->connection();
+      require_once(__DIR__.'/config/Autoload.php');
+      Autoload::charger();
+      $cont = new frontController($con);
     ?>
     </div>     
 

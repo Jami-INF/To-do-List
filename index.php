@@ -2,30 +2,21 @@
 
   require_once(__DIR__.'/config/Identification.php');
   require_once(__DIR__.'/config/Autoload.php');
-  //chargement autoloader pour autochargement des classes
   Autoload::charger();
-  //instanciation de la classe indexGateway
-  //$con =indexGateway::initalisationConnexion();
   $connection = new indexGateway();
   $con = $connection->initalisationConnexion();
-
-  //require_once(__DIR__.'/controller/frontController.php');
+  require_once(__DIR__.'/controller/frontController.php');
   $cont = new frontController($con);
-
-  //autoloader pour instancier la var global $con
-  //$indexGateway = new indexGateway();
-  //$indexGateway->initalisationConnexion();
-
-  /*AUTOLOADER
-  //si controller pas objet
-  //  header('Location: controller/controller.php');
-
-  //si controller objet
-
-
-  */
+  // if(isset($_GET['action'])){
+  //   echo 1;
+    
+  // }
+  // else{
+  //   echo 2;
+  //   header(" Location: vueConnection.php");
+  // }
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -43,8 +34,8 @@
       <a class="butonacueil" href="accueil.php">
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
-      <a class="butonacueil" href="vueConnection.php">
-        <button type="button" name="button" class="btn btn-primary" id="btn">Connection</button>
+      <a class="butonacueil" href="?action=pageConnection">
+        Connection
       </a>
     </header>
     <div class="main">
@@ -53,4 +44,4 @@
   </section>
   <script src="script.js"></script>
 </body>
-</html>
+</html> -->
