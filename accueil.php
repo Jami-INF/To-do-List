@@ -81,6 +81,14 @@
   <section class="home-section">
     <div class="main">
       <h1>To Do List</h1>
+      <?php
+      if(!isset($_SESSION["Utilisateur"])) {
+        echo "oui";
+        echo $_SESSION['email'];
+    } else {
+        echo "non";
+    }
+      ?>
       
     </div>     
 

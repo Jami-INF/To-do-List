@@ -80,6 +80,7 @@
                   $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
                   $utilisateurGateway = new UtilisateurGateway($this->con);
                   $utilisateurRep = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
+                  $_SESSION['email']=$utilisateur->getEmail();
                   echo $utilisateurRep;
                   if($utilisateurRep!=NULL){
                     echo "bon utilisateur";
