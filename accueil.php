@@ -85,9 +85,9 @@
       if(!isset($_SESSION["Utilisateur"])) {
         echo "oui";
         echo $_SESSION['email'];
-    } else {
+      } else {
         echo "non";
-    }
+      }
       ?>
       
     </div>     
