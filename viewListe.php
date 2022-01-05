@@ -84,9 +84,8 @@
 
 
 	<?php
-      require (__DIR__.'/modeles/Tache.php');
-      require_once(__DIR__.'/modeles/TacheGateway.php');
-      $query = "SELECT * FROM Todoux";
+      // $idListe = $_GET['list'];
+      $query = "SELECT * FROM `todoux` WHERE `idList`=".$_GET['list'];
       $param =[];
       $con->executeQuery($query, $param);
       $result=$con->getResults();
@@ -126,7 +125,7 @@
 
 
     <!-------------->
-      <a class="butonacueil" href="newTache.php">
+      <a class="butonacueil" href="?action=NewTachePage">
         <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>
       </a>
     </div>     

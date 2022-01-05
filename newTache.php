@@ -85,23 +85,14 @@
       </a>
     <h2>Nouvelle tache</h2>
     <div class="formulaire">
-      <form method="post">
+      <form method="post" action="index?action=creerTache">
           <input type="text" name="nomTache" placeholder="Nom de la tache">
           <input type="text" name="descriptionTache" placeholder="descriptionTache">
-          <input type="number" name="idUser" placeholder="idUser (public/privé a gerer)">
-          
           <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
       </form>
     </div>
     <?php
-    filter_var($_POST['nomTache'], FILTER_SANITIZE_STRING);
-    filter_var($_POST['descriptionTache'], FILTER_SANITIZE_STRING);
-    filter_var($_POST['idUser'], FILTER_SANITIZE_NUMBER_INT);
-
-    if (isset($_POST['submit'])) {
-      $tache = new TacheGateway();
-      $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $con);
-    }
+    
 
     // if (isset($_POST['submit'])) {
     //   if(!empty($_POST['nomTache'])){

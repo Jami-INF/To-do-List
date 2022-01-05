@@ -86,11 +86,13 @@
       </a>
     <h2>Nouvelle liste</h2>
     <div class="formulaire">
-      <form action="newList.php" method="POST">
+      <form action="index?action=creerListe" method="POST">
           <input type="text" name="nomListe" placeholder="Nom de la liste">
           <input type="submit" name="submitListe" value="Ajouter">
+          <input type="checkbox" name="listeInviteCheck"> Liste publique
       </form>
     </div>
+    
     <!-- <form action="index.php" method="POST" autocomplete="off">
         <input type="text" name="liste" placeholder="Donner un nomTache à la liste">
         <input type="submit" value="Ajouter la liste">
@@ -101,18 +103,18 @@
 
     
     <?php
-    filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
+    // filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
     
-    if(isset($_POST['submitListe'])){
-      if(isset($_POST['nomListe'])){
-          $nomListe = $_POST['nomListe'];
-          $liste = new ListeGateway($con);
-          $liste->addList($nomListe);
-          //$liste->getList();
-      }else{
-          echo "Veuillez remplir le nom de la liste";
-      }
-    }
+    // if(isset($_POST['submitListe'])){
+    //   if(isset($_POST['nomListe'])){
+    //       $nomListe = $_POST['nomListe'];
+    //       $liste = new ListeGateway($con);
+    //       $liste->addList($nomListe);
+    //       //$liste->getList();
+    //   }else{
+    //       echo "Veuillez remplir le nom de la liste";
+    //   }
+    // }
 
     
       // echo 1;

@@ -33,7 +33,7 @@
       <a class="butonacueil" href="?action=pageInscription">
         <button type="button" name="button" class="btn btn-primary" id="btn">Inscription</button>
       </a>
-      <a class="butonacueil" href="?action=Accueil">
+      <a class="butonacueil" href="?action=Invite">
         <button type="button" name="Invité" class="btn btn-primary" id="btn">Invité</button>
       </a>
     <?php

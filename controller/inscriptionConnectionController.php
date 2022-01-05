@@ -32,7 +32,7 @@
                       $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
                       $utilisateurGateway = new UtilisateurGateway($this->con);
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
-                      require(__DIR__.'/../accueil.php');
+                      require(__DIR__.'/../vueConnection.php');
                     
                       echo "<p>Vous êtes inscrit</p>";
                     }

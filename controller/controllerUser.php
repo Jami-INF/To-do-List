@@ -16,8 +16,16 @@ class controllerUser{
             case 'Accueil':
                 require(__DIR__ . '/../accueil.php');
                 break;
+            case 'Invite':
+                require(__DIR__ . '/../accueil.php');
+                $_SESSION['idUser'] = 0;
+                break;
             case 'pageConnection':
                 require(__DIR__ . '/../vueConnection.php');
+                break;
+            case 'pageListe':
+                require(__DIR__ . '/../viewListe.php');
+                $this->getIdListe();
                 break;
             case 'NewTachePage':
                 require(__DIR__ . '/../newTache.php');
@@ -27,6 +35,12 @@ class controllerUser{
                 break;
             case 'pageInscription':
                 require(__DIR__ . '/../inscription.php');
+                break;
+            case 'creerListe':
+                $this->creerListe();
+                break;
+            case 'creerTache':
+                $this->creerTache();
                 break;
             // case null:
             //     header('Location: vueConnection.php?action=con');
@@ -45,11 +59,40 @@ class controllerUser{
         $insc = new inscriptionConnectionController($this->con);
         $insc->inscription();
     }
+    public function creerListe(){
+        filter_var($_POST['nomListe'], FILTER_SANITIZE_STRING);
+    
+        if(isset($_POST['submitListe'])){
+            if(isset($_POST['nomListe'])){
+                $nomListe = $_POST['nomListe'];
+                $liste = new ListeGateway($this->con);
+                $liste->addList($nomListe);
+                //$liste->getList();
+            }else{
+                echo "Veuillez remplir le nom de la liste";
+            }
+        }
+        require(__DIR__ . '/../newList.php');
+    }
     public function isUser(){
         if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
             return true;
         }
         return false;
+    }
+    public function getIdListe(){
+        $liste = new ListeGateway($this->con);
+        $liste->getList();
+    }
+    public function creerTache(){
+        filter_var($_POST['nomTache'], FILTER_SANITIZE_STRING);
+        filter_var($_POST['descriptionTache'], FILTER_SANITIZE_STRING);
+        filter_var($_POST['idUser'], FILTER_SANITIZE_NUMBER_INT);
+
+        if (isset($_POST['submit'])) {
+        $tache = new TacheGateway();
+        $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $this->con);
+        }
     }
     public function deconnection(){
         $_SESSION = array();
