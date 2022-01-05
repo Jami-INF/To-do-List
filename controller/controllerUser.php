@@ -42,6 +42,9 @@ class controllerUser{
             case 'creerTache':
                 $this->creerTache();
                 break;
+            case 'supprimerTache':
+                $this->supprimerTache();
+                break;
             // case null:
             //     header('Location: vueConnection.php?action=con');
             //     echo 'init';
@@ -99,6 +102,14 @@ class controllerUser{
         $_SESSION = array();
         session_unset();
         session_destroy();
+    }
+    public function supprimerTache(){
+        $idTache = $_GET['idTache'];
+        echo $idTache;
+        $tache = new TacheGateway($this->con);
+        $tache->SupprimerTache($idTache);
+        require(__DIR__ . '/../viewListe.php');
+        header('Location: ?list='.$_GET['list']);
     }
 
 }

@@ -68,7 +68,7 @@ public $con;
         echo "<p>".$row['descriptionTache']."</p>";
         echo '<div class="itemlist">';
         echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
-        echo "<button><i class='bx bx-trash'></i></button>";
+        echo "<a href='?action=supprimerTache&amp;idTache=".$row['idTache']."&amp;list=".$_GET['list']."'><button><i class='bx bx-trash'></i></button></a>";
         echo "</div>";
         echo "</div>";
 

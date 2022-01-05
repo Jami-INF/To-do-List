@@ -37,13 +37,10 @@ class TacheGateway extends Tache{
 //             ':idList' => array($_GET['list'], PDO::PARAM_INT),
 //           ));
 //     }
-    function SupprimerTache (string $nomTache, string $descriptionTache, int $idList){
-      echo "SUPPRESSION EN COURS";
-      $query = "DELETE FROM Todoux WHERE :nomTache = nomTache AND :descriptionTache = descriptionTache AND :idList = idList";
+    function SupprimerTache (int $idTache){
+      $query = "DELETE FROM Todoux WHERE :idTache = idTache";
       $this->con->executeQuery($query, array(
-        ':nomTache' => array($nomTache, PDO::PARAM_STR),
-        ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
-        ':idList' => array($idList, PDO::PARAM_INT)
+        ':idTache' => array($idTache, PDO::PARAM_INT)
       ));
       
     }
