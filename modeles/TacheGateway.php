@@ -18,7 +18,7 @@ class TacheGateway extends Tache{
       }  
     }
     function ajouterTache(string $nomTache, string $descriptionTache){
-      $query="INSERT INTO todoux(nomTache, descriptionTache, idList) VALUES (:nomTache,:descriptionTache,:idList)";
+      $query="INSERT INTO todoux(nomTache, descriptionTache, idList, estCochee) VALUES (:nomTache,:descriptionTache,:idList, 0)";
       $this->con->executeQuery($query,array(
         ':nomTache' => array($nomTache, PDO::PARAM_STR),
         ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),

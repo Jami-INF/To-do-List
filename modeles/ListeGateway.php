@@ -52,8 +52,23 @@ public $con;
         return $resultat;
         echo "jesuispasse";
     }
+    
 
     public function ajouterTacheDansListe(){
+        function check($idTache){
+            $query = "UPDATE `todoux` SET `estCochee`= 1 WHERE idTache = :idTache";
+            $this->con->executeQuery($query, array(
+                ':idTache' => array ($idTache,PDO::PARAM_INT),
+            ));
+        }
+        function uncheck($idTache){
+            $query = "UPDATE `todoux` SET `estCochee`= 0 WHERE idTache = :idTache";
+            $this->con->executeQuery($query, array(
+                ':idTache' => array ($idTache,PDO::PARAM_INT),
+            ));
+        }
+
+
         // $idListe = $_GET['list'];
       $query = "SELECT * FROM `todoux` WHERE `idList`=".$_GET['list'];
       $param =[];
@@ -62,20 +77,24 @@ public $con;
         echo "<div class='flexbox'>";
         
         foreach ($result as $row) {
-      
-        echo '<div class="flexboxitem">';
-        echo "<h3>".$row['nomTache']."</h3>";
-        echo "<p>".$row['descriptionTache']."</p>";
-        echo '<div class="itemlist">';
-        echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
-        echo "<a href='?action=supprimerTache&amp;idTache=".$row['idTache']."&amp;list=".$_GET['list']."'><button><i class='bx bx-trash'></i></button></a>";
-        echo "</div>";
-        echo "</div>";
+            $idTache = $row['idTache'];
+                
+            echo '<div class="flexboxitem">';
+            echo "<h3>".$row['nomTache']."</h3>";
+            echo "<p>".$row['descriptionTache']."</p>";
+            echo '<div class="itemlist">';
+            echo $row['estCochee'];
+            if($row['estCochee']=="1"){
+                echo '<form class="fromliste"><input ><input type="checkbox" name="checkbox" checked="checked" value="checkbox"></form>';
+            }else{
+                echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
+            }
 
-        if (isset($_POST['supp'])) {
-          $tache = new TacheGateway($this->con);
-          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList']);
-        }
+            echo "<a href='?action=supprimerTache&amp;idTache=".$row['idTache']."&amp;list=".$_GET['list']."'><button><i class='bx bx-trash'></i></button></a>";
+            
+            echo "</div>";
+            echo "</div>";
+
       }
       echo "<a class='butonacueil' href='?action=NewTachePage&amp;list=".$_GET['list']."'>
       <button type='button' name='button' class='btn btn-primary' id='btn'>Ajouter une tache</button>

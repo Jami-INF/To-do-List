@@ -86,6 +86,8 @@
 	<?php
     $listgw = new listeController();
     $listgw->ajouterTache();
+
+    
       ?>
     </div>
 
@@ -108,3 +110,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
