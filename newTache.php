@@ -85,11 +85,14 @@
       </a>
     <h2>Nouvelle tache</h2>
     <div class="formulaire">
-      <form method="post" action="index?action=creerTache">
-          <input type="text" name="nomTache" placeholder="Nom de la tache">
-          <input type="text" name="descriptionTache" placeholder="descriptionTache">
-          <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
-      </form>
+      <?php
+      echo "<form method='post' action='index.php?action=creerTache&amp;list=".$_GET['list']."''>
+      <input type='text' name='nomTache' placeholder='Nom de la tache'>
+      <input type='text' name='descriptionTache' placeholder='descriptionTache'>
+      <button type='submit' name='submitNewTache' id='add_btn' class='add_btn'>Add Task</button>
+      </form>"
+      
+      ?>
     </div>
     <?php
     

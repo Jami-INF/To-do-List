@@ -8,14 +8,7 @@ public $con;
         
         global $con, $username, $password, $dsn, $dbname;
         try{
-            if($con != null){
-
-                $this->con = $con;
-            }
-            else{
-
-                $this->con = new Connection($dsn, $dbname, $username, $password);
-            }
+            $this->con = new Connection($dsn, $dbname, $username, $password);
         }catch(PDOException $e){ 
             echo "connection refusé";
         } 
@@ -58,6 +51,35 @@ public $con;
         $resultat = $this->con->getResults(); 
         return $resultat;
         echo "jesuispasse";
+    }
+
+    public function ajouterTacheDansListe(){
+        // $idListe = $_GET['list'];
+      $query = "SELECT * FROM `todoux` WHERE `idList`=".$_GET['list'];
+      $param =[];
+      $this->con->executeQuery($query, $param);
+      $result=$this->con->getResults();
+        echo "<div class='flexbox'>";
+        
+        foreach ($result as $row) {
+      
+        echo '<div class="flexboxitem">';
+        echo "<h3>".$row['nomTache']."</h3>";
+        echo "<p>".$row['descriptionTache']."</p>";
+        echo '<div class="itemlist">';
+        echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
+        echo "<button><i class='bx bx-trash'></i></button>";
+        echo "</div>";
+        echo "</div>";
+
+        if (isset($_POST['supp'])) {
+          $tache = new TacheGateway($this->con);
+          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList']);
+        }
+      }
+      echo "<a class='butonacueil' href='?action=NewTachePage&amp;list=".$_GET['list']."'>
+      <button type='button' name='button' class='btn btn-primary' id='btn'>Ajouter une tache</button>
+        </a>";
     }
 
 

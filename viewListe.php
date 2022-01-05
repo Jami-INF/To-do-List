@@ -84,31 +84,8 @@
 
 
 	<?php
-      // $idListe = $_GET['list'];
-      $query = "SELECT * FROM `todoux` WHERE `idList`=".$_GET['list'];
-      $param =[];
-      $con->executeQuery($query, $param);
-      $result=$con->getResults();
-      ?>
-        <div class="flexbox">
-        <?php
-      foreach ($result as $row) {
-      
-        echo '<div class="flexboxitem">';
-        echo "<h3>".$row['nomTache']."</h3>";
-        echo "<p>".$row['descriptionTache']."</p>";
-        echo '<div class="itemlist">';
-        echo '<form class="fromliste"><input type="checkbox" name="checkbox" value="checkbox"></form>';
-        echo "<button><i class='bx bx-trash'></i></button>";
-        echo "</div>";
-        echo "</div>";
-
-        if (isset($_POST['supp'])) {
-          $tache = new TacheGateway();
-          $tache->SupprimerTache($row['nomTache'], $row['descriptionTache'], $row['idList'], $con);
-        }
-
-      }
+    $listgw = new listeController();
+    $listgw->ajouterTache();
       ?>
     </div>
 
@@ -125,9 +102,7 @@
 
 
     <!-------------->
-      <a class="butonacueil" href="?action=NewTachePage">
-        <button type="button" name="button" class="btn btn-primary" id="btn">Ajouter une tache</button>
-      </a>
+      
     </div>     
   </section>
   <script src="script.js"></script>

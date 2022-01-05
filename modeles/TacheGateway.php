@@ -2,7 +2,7 @@
 
 class TacheGateway extends Tache{
   private $con;
-  public function __construct()
+  public function __construct($con)
     {
       global $con, $username, $password, $dsn, $dbname;
       try{
@@ -17,15 +17,26 @@ class TacheGateway extends Tache{
           echo "connection refusé";
       }  
     }
-  function AjoutTacheManuellement (string $nomTache, string $descriptionTache, int $idList){
-          $query = "INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES(:nomTache, :descriptionTache, :idList)";
-//INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES ('nonn', 'dceve', 44)
-          $this->con->executeQuery($query,array(
-            ':nomTache' => array($nomTache, PDO::PARAM_STR),
-            ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
-            ':idList' => array($idList, PDO::PARAM_INT),
-          ));
+    function ajouterTache(string $nomTache, string $descriptionTache){
+      $query="INSERT INTO todoux(nomTache, descriptionTache, idList) VALUES (:nomTache,:descriptionTache,:idList)";
+      $this->con->executeQuery($query,array(
+        ':nomTache' => array($nomTache, PDO::PARAM_STR),
+        ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
+        ':idList' => array($_GET['list'], PDO::PARAM_INT),
+      ));
+      require(__DIR__.'/../viewListe.php');
+      header('Location: ?list='.$_GET['list']);
     }
+    
+//   function AjoutTacheManuellement (string $nomTache, string $descriptionTache){
+//           $query = "INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES(:nomTache, :descriptionTache, :idList)";
+// //INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES ('nonn', 'dceve', 44)
+//           $this->con->executeQuery($query,array(
+//             ':nomTache' => array($nomTache, PDO::PARAM_STR),
+//             ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
+//             ':idList' => array($_GET['list'], PDO::PARAM_INT),
+//           ));
+//     }
     function SupprimerTache (string $nomTache, string $descriptionTache, int $idList){
       echo "SUPPRESSION EN COURS";
       $query = "DELETE FROM Todoux WHERE :nomTache = nomTache AND :descriptionTache = descriptionTache AND :idList = idList";

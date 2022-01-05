@@ -65,7 +65,7 @@ class controllerUser{
         if(isset($_POST['submitListe'])){
             if(isset($_POST['nomListe'])){
                 $nomListe = $_POST['nomListe'];
-                $liste = new ListeGateway($this->con);
+                $liste = new ListeGateway();
                 $liste->addList($nomListe);
                 //$liste->getList();
             }else{
@@ -81,17 +81,18 @@ class controllerUser{
         return false;
     }
     public function getIdListe(){
-        $liste = new ListeGateway($this->con);
+        $liste = new ListeGateway();
         $liste->getList();
     }
     public function creerTache(){
+        echo "je suis dans controllerUser";
         filter_var($_POST['nomTache'], FILTER_SANITIZE_STRING);
         filter_var($_POST['descriptionTache'], FILTER_SANITIZE_STRING);
-        filter_var($_POST['idUser'], FILTER_SANITIZE_NUMBER_INT);
 
-        if (isset($_POST['submit'])) {
-        $tache = new TacheGateway();
-        $tache->AjoutTacheManuellement ($_POST['nomTache'], $_POST['descriptionTache'], $_POST['idUser'], $this->con);
+        if (isset($_POST['submitNewTache'])) {
+        $tache = new TacheGateway($this->con);
+        $tache->ajouterTache($_POST['nomTache'], $_POST['descriptionTache'], $this->con);
+        
         }
     }
     public function deconnection(){
