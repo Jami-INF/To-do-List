@@ -5,6 +5,7 @@ class ListeGateway{
 public $con;
     public function __construct()
     {
+        
         global $con, $username, $password, $dsn, $dbname;
         try{
             if($con != null){
@@ -12,6 +13,7 @@ public $con;
                 $this->con = $con;
             }
             else{
+
                 $this->con = new Connection($dsn, $dbname, $username, $password);
             }
         }catch(PDOException $e){ 
@@ -29,6 +31,20 @@ public $con;
             ':nomList' => array($nomList, PDO::PARAM_STR)));
         echo ('inssertion réussi');
     }
+
+    public function getList(){
+        $idUser=$_SESSION['idUser'];
+
+        $query = "SELECT nomList FROM list WHERE idUser = :idUser";//$_SESSION['idList']
+        $this->con->executeQuery($query, array(
+            ':idUser' => array ($idUser,PDO::PARAM_STR),
+        ));
+        $resultat = $this->con->getResults(); 
+        return $resultat;
+        echo "jesuispasse";
+    }
+
+
 
 }
 ?>

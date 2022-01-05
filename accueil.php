@@ -41,27 +41,19 @@
        </a>
        <p class="tooltip">Espace de travail</p>
      </li>
-     <li>
-       <a href="viewListe.php">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 1</p>
-       </a>
-       <p class="tooltip">List 1</p>
-     </li>
-     <li>
-      <a href="#">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 2</p>
-      </a>
-      <p class="tooltip">List 2</p>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 3</p>
-      </a>
-      <p class="tooltip">List 3</p>
-    </li>
+     <?php
+      $listgw = new ListeGateway();
+      $liste = $listgw->getList();
+      foreach ($liste as $value) {
+        echo "<li>
+        <a href='viewListe.php'>
+         <i class='bx bx-list-ul'></i>
+         <p class='links_name'>".$value['nomList']."</p>
+        </a>
+        <p class='tooltip'>".$value['nomList']."</p>
+      </li>";
+      }
+      ?>
      <li>
        <a href="?action=NewListePage">
         <i class='bx bx-plus' ></i>
@@ -81,14 +73,7 @@
   <section class="home-section">
     <div class="main">
       <h1>To Do List</h1>
-      <?php
-      if(!isset($_SESSION["Utilisateur"])) {
-        echo "oui";
-        echo $_SESSION['email'];
-      } else {
-        echo "non";
-      }
-      ?>
+      
       
     </div>     
 

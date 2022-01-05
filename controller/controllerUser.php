@@ -38,11 +38,8 @@ class controllerUser{
             }
     }
     public function connection (){
-        echo "Connection ok";
         $insc = new inscriptionConnectionController($this->con);
-        echo "apres inscriptionConnection";
         $insc->connection();
-        echo "apres lancement inscriptionConnection";
     }
     public function inscription(){
         $insc = new inscriptionConnectionController($this->con);
