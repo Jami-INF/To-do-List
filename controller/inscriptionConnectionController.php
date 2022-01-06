@@ -85,6 +85,9 @@
                   echo "mauvais utilisateur";
                   require(__DIR__.'/../vueConnection.php');
                   }
+                }else{
+                  echo "<p>Veuillez mettre un mdp.</p>";
+                  require(__DIR__.'/../vueConnection.php');
                 }
               }else{
                 if (!preg_match($expression, $_POST['adresse_mail'])) {

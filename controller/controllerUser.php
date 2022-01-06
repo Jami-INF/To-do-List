@@ -91,7 +91,6 @@ class controllerUser{
         $liste->getList();
     }
     public function creerTache(){
-        echo "je suis dans controllerUser";
         filter_var($_POST['nomTache'], FILTER_SANITIZE_STRING);
         filter_var($_POST['descriptionTache'], FILTER_SANITIZE_STRING);
 
