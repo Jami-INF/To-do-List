@@ -30,7 +30,7 @@
             $liste = $listgw->getListInvite();
             foreach ($liste as $value) {
                 echo "<li>
-                <a href='?action=pageListe'>
+                <a href='?action=pageListe&amp;list=".$value['idList']."'>
                 <i class='bx bx-list-ul'></i>
                 <p class='links_name'>".$value['nomList']."</p>
                 </a>

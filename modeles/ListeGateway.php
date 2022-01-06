@@ -43,7 +43,7 @@ public $con;
     public function getListInvite(){
         $idUser=0;
 
-        $query = "SELECT nomList FROM list WHERE idUser = :idUser";//$_SESSION['idList']
+        $query = "SELECT * FROM list WHERE idUser = :idUser";//$_SESSION['idList']
         $this->con->executeQuery($query, array(
             ':idUser' => array ($idUser,PDO::PARAM_STR),
         ));
