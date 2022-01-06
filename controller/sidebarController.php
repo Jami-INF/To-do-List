@@ -8,9 +8,8 @@
 
         public function afficherListesPrivees()
         {
-            if($_SESSION['idUser']!=0){
+            if($_GET['action']!='Invite'){
                 echo '<p>Private</p>';
-              }
                $listgw = new ListeGateway();
                $liste = $listgw->getList();
                foreach ($liste as $value) {
@@ -20,8 +19,9 @@
                   <p class='links_name'>".$value['nomList']."</p>
                  </a>
                  <p class='tooltip'>".$value['nomList']."</p>
-               </li>";
-               }
+                 </li>";
+                }
+            }
         }
         public function afficherListesPubliques()
         {
@@ -36,7 +36,7 @@
                 </a>
                 <p class='tooltip'>".$value['nomList']."</p>
             </li>";
-      }
+            }
         }
     }
 ?>

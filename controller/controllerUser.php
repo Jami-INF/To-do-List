@@ -7,6 +7,9 @@ class controllerUser{
         $this->con = $con;
         $this->action = $action;
         switch ($this->action){
+            case 'Deconnexion':
+                $this->deconnection();
+                break;
             case 'connection':
                 $this->connection();
                 break;
@@ -18,7 +21,7 @@ class controllerUser{
                 break;
             case 'Invite':
                 require(__DIR__ . '/../accueil.php');
-                $_SESSION['idUser'] = 0;
+                $_SESSION['idUser']=0;
                 break;
             case 'pageConnection':
                 require(__DIR__ . '/../vueConnection.php');
@@ -102,6 +105,7 @@ class controllerUser{
         $_SESSION = array();
         session_unset();
         session_destroy();
+        require(__DIR__ . '/../vueConnection.php');
     }
     public function supprimerTache(){
         $idTache = $_GET['idTache'];

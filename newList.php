@@ -9,7 +9,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-  <div class="sidebar">
+<div class="sidebar">
     <div class="logo-details">
       <p class="logo_name">ToDoux Liste</p>
       <i class='bx bx-menu' id="btn" ></i>
@@ -21,7 +21,14 @@
          <span class="tooltip">Rechercher</span>
       </li>
       <li>
-        <a href="index.php">
+        <a href="?action=Deconnexion">
+         <i class='bx bx-log-out' ></i>
+         <p class="links_name">Déconecter</p>
+        </a>
+         <p class="tooltip">Déconecter</p>
+      </li>
+      <li>
+        <a href="?action=Accueil">
          <i class='bx bx-home-alt' ></i>
          <p class="links_name">Accueil</p>
         </a>
@@ -41,29 +48,13 @@
        </a>
        <p class="tooltip">Espace de travail</p>
      </li>
+     <?php
+      $sidebar = new sidebarController();
+      $sidebar->afficherListesPrivees();
+      $sidebar->afficherListesPubliques();
+      ?>
      <li>
-       <a href="#">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 1</p>
-       </a>
-       <p class="tooltip">List 1</p>
-     </li>
-     <li>
-      <a href="#">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 2</p>
-      </a>
-      <p class="tooltip">List 2</p>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bx-list-ul'></i>
-        <p class="links_name">List 3</p>
-      </a>
-      <p class="tooltip">List 3</p>
-    </li>
-     <li>
-       <a href="newList.php">
+       <a href="?action=NewListePage">
         <i class='bx bx-plus' ></i>
         <p class="links_name">Ajouter liste</p>
        </a>

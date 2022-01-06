@@ -5,8 +5,7 @@ class ListeGateway{
 public $con;
     public function __construct()
     {
-        
-        global $con, $username, $password, $dsn, $dbname;
+        global $username, $password, $dsn, $dbname;
         try{
             $this->con = new Connection($dsn, $dbname, $username, $password);
         }catch(PDOException $e){ 

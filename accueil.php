@@ -21,6 +21,13 @@
          <span class="tooltip">Rechercher</span>
       </li>
       <li>
+        <a href="?action=Deconnexion">
+         <i class='bx bx-log-out' ></i>
+         <p class="links_name">Déconecter</p>
+        </a>
+         <p class="tooltip">Déconecter</p>
+      </li>
+      <li>
         <a href="?action=Accueil">
          <i class='bx bx-home-alt' ></i>
          <p class="links_name">Accueil</p>
