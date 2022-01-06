@@ -17,27 +17,27 @@ class controllerUser{
                 $this->inscription();
                 break;
             case 'Accueil':
-                require(__DIR__ . '/../accueil.php');
+                require(__DIR__ . '/../vues/accueil.php');
                 break;
             case 'Invite':
-                require(__DIR__ . '/../accueil.php');
+                require(__DIR__ . '/../vues/accueil.php');
                 $_SESSION['idUser']=0;
                 break;
             case 'pageConnection':
-                require(__DIR__ . '/../vueConnection.php');
+                require(__DIR__ . '/../vues/vueConnection.php');
                 break;
             case 'pageListe':
-                require(__DIR__ . '/../viewListe.php');
+                require(__DIR__ . '/../vues/viewListe.php');
                 $this->getIdListe();
                 break;
             case 'NewTachePage':
-                require(__DIR__ . '/../newTache.php');
+                require(__DIR__ . '/../vues/newTache.php');
                 break;
             case 'NewListePage':
-                require(__DIR__ . '/../newList.php');
+                require(__DIR__ . '/../vues/newList.php');
                 break;
             case 'pageInscription':
-                require(__DIR__ . '/../inscription.php');
+                require(__DIR__ . '/../vues/inscription.php');
                 break;
             case 'creerListe':
                 $this->creerListe();
@@ -81,7 +81,7 @@ class controllerUser{
                 echo "Veuillez remplir le nom de la liste";
             }
         }
-        require(__DIR__ . '/../newList.php');
+        require(__DIR__ . '/../vues/newList.php');
     }
     public function isUser(){
         if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
@@ -107,21 +107,21 @@ class controllerUser{
         $_SESSION = array();
         session_unset();
         session_destroy();
-        require(__DIR__ . '/../vueConnection.php');
+        require(__DIR__ . '/../vues/vueConnection.php');
     }
     public function supprimerTache(){
         $idTache = $_GET['idTache'];
         echo $idTache;
         $tache = new TacheGateway($this->con);
         $tache->SupprimerTache($idTache);
-        require(__DIR__ . '/../viewListe.php');
+        require(__DIR__ . '/../vues/viewListe.php');
         header('Location: ?list='.$_GET['list']);
     }
     public function supprimerListe(){
         $idListe = $_GET['list'];
         $liste = new ListeGateway();
         $liste->supprimerListe($idListe);
-        require(__DIR__ . '/../accueil.php');
+        require(__DIR__ . '/../vues/accueil.php');
         // header('Location: ?list='.$_GET['list']);
     }
 

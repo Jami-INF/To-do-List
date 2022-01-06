@@ -80,7 +80,7 @@
       echo "<form method='post' action='index.php?action=creerTache&amp;list=".$_GET['list']."''>
       <input type='text' name='nomTache' placeholder='Nom de la tache'>
       <input type='text' name='descriptionTache' placeholder='descriptionTache'>
-      <button type='submit' name='submitNewTache' id='add_btn' class='add_btn'>Add Task</button>
+      <button type='submit' name='submitNewTache'>Ajouter Tache</button>
       </form>";
       //      input type='submit' name='submitNewTache' value='Ajouter'>
 

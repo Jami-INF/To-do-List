@@ -24,7 +24,7 @@ class TacheGateway extends Tache{
         ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
         ':idList' => array($_GET['list'], PDO::PARAM_INT),
       ));
-      require(__DIR__.'/../viewListe.php');
+      require(__DIR__.'/../vues/viewListe.php');
       header('Location: ?list='.$_GET['list']);
     }
     

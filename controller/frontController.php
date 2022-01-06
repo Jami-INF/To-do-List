@@ -27,7 +27,7 @@ class FrontController {
                     new ControllerUser($con, $action);
                 }
             } else {
-                require(__DIR__ . '/../vueConnection.php');
+                require(__DIR__ . '/../vues/vueConnection.php');
             }
         } catch (PDOException $pdoErreur) {
             $dataVueErreur[] = "Erreur de PDO";

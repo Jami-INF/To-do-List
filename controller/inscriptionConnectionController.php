@@ -32,34 +32,34 @@
                       $utilisateur = new Utilisateur($_POST['adresse_mail'],$_POST['password']);
                       $utilisateurGateway = new UtilisateurGateway($this->con);
                       $utilisateurGateway->addUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
-                      require(__DIR__.'/../vueConnection.php');
+                      require(__DIR__.'/../vues/vueConnection.php');
                     
                       echo "<p>Vous êtes inscrit</p>";
                     }
                     else{
-                      require(__DIR__.'/../inscription.php');
+                      require(__DIR__.'/../vues/inscription.php');
                       echo "<p>Les mots de passe ne correspondent pas</p>";
                     }
                   }
                   else{
-                    require(__DIR__.'/../inscription.php');
+                    require(__DIR__.'/../vues/inscription.php');
                     echo "<p>Les adresses mail ne correspondent pas</p>";
                   }
                 }else{
                   if (!preg_match($expression, $$_POST['verif_adresse_mail'])) {
-                    require(__DIR__.'/../inscription.php');
+                    require(__DIR__.'/../vues/inscription.php');
                     echo "<p>Le format de l'email n'est pas correct!</p>";
                     }
                 }
               }else{
                 if (!preg_match($expression, $_POST['adresse_mail'])) {
-                  require(__DIR__.'/../inscription.php');
+                  require(__DIR__.'/../vues/inscription.php');
                   echo "<p>Le format de l'email n'est pas correct!</p>";
                   }
               }
             }
             else{
-              require(__DIR__.'/../inscription.php');
+              require(__DIR__.'/../vues/inscription.php');
               echo "<p>Veuillez remplir tous les champs</p>";
             }
           }
@@ -80,19 +80,19 @@
                   echo $utilisateurRep;
                   if($utilisateurRep!=NULL){
                     //echo "bon utilisateur";
-                    require(__DIR__.'/../accueil.php');
+                    require(__DIR__.'/../vues/accueil.php');
                   }else{
                   echo "mauvais utilisateur";
-                  require(__DIR__.'/../vueConnection.php');
+                  require(__DIR__.'/../vues/vueConnection.php');
                   }
                 }else{
                   echo "<p>Veuillez mettre un mdp.</p>";
-                  require(__DIR__.'/../vueConnection.php');
+                  require(__DIR__.'/../vues/vueConnection.php');
                 }
               }else{
                 if (!preg_match($expression, $_POST['adresse_mail'])) {
                   echo "<p>Le format de l'email n'est pas correct!</p>";
-                  require(__DIR__.'/../vueConnection.php');
+                  require(__DIR__.'/../vues/vueConnection.php');
                  }
               }
           }
