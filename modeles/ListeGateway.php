@@ -103,6 +103,21 @@ public $con;
         $this->con->executeQuery($query);
         echo "suppression réussi";
     }
+    public function afficherTitre(){
+        $idList = $_GET['list'];
+        $query = "SELECT nomList FROM list WHERE idList = :idList";
+            $this->con->executeQuery($query, array(
+                ':idList' => array ($idList,PDO::PARAM_INT),
+            ));
+        $resultat = $this->con->getResults(); 
+
+        foreach ($resultat as $row) {
+
+
+        echo"<h1>".$row['nomList']."</h1>";
+    }
+        
+    }
 
 
 

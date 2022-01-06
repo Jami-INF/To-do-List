@@ -71,11 +71,12 @@
   </div>
   <section class="home-section">
     <div class="main">
-        <h1>Nom de la liste</h1>
+        <!-- <h1>Nom de la liste</h1> -->
 
 
 	<?php
     $listgw = new listeController();
+    $listgw->afficherTitre();
     $listgw->ajouterTache();
 
     

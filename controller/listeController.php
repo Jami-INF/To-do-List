@@ -8,6 +8,10 @@
             $listeGateway = new ListeGateway();
             $listeGateway->ajouterTacheDansListe();
         }
+        public function afficherTitre(){
+            $listeGateway = new ListeGateway();
+            $listeGateway->afficherTitre();
+        }
         
     }
 ?>
