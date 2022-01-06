@@ -28,15 +28,6 @@ class TacheGateway extends Tache{
       header('Location: ?list='.$_GET['list']);
     }
     
-//   function AjoutTacheManuellement (string $nomTache, string $descriptionTache){
-//           $query = "INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES(:nomTache, :descriptionTache, :idList)";
-// //INSERT INTO `todoux`(`nomTache`, `descriptionTache`, `idList`) VALUES ('nonn', 'dceve', 44)
-//           $this->con->executeQuery($query,array(
-//             ':nomTache' => array($nomTache, PDO::PARAM_STR),
-//             ':descriptionTache' => array($descriptionTache, PDO::PARAM_STR),
-//             ':idList' => array($_GET['list'], PDO::PARAM_INT),
-//           ));
-//     }
     function SupprimerTache (int $idTache){
       $query = "DELETE FROM Todoux WHERE :idTache = idTache";
       $this->con->executeQuery($query, array(

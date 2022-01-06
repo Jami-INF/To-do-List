@@ -81,9 +81,11 @@
       <input type='text' name='nomTache' placeholder='Nom de la tache'>
       <input type='text' name='descriptionTache' placeholder='descriptionTache'>
       <button type='submit' name='submitNewTache' id='add_btn' class='add_btn'>Add Task</button>
-      </form>"
-      
+      </form>";
+      //      input type='submit' name='submitNewTache' value='Ajouter'>
+
       ?>
+
     </div>
     <?php
     

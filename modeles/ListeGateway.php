@@ -25,7 +25,7 @@ public $con;
             ':nomList' => array($nomList, PDO::PARAM_STR),
             ':idUser' => array ($idUser,PDO::PARAM_STR)
         ));
-        echo ('inssertion réussi');
+        //echo ('inssertion réussi');
     }
 
     public function getList(){
@@ -37,7 +37,6 @@ public $con;
         ));
         $resultat = $this->con->getResults(); 
         return $resultat;
-        echo "jesuispasse";
     }
 
     public function getListInvite(){
@@ -49,7 +48,6 @@ public $con;
         ));
         $resultat = $this->con->getResults(); 
         return $resultat;
-        echo "jesuispasse";
     }
     
 
@@ -89,7 +87,7 @@ public $con;
             }
 
             echo "<a href='?action=supprimerTache&amp;idTache=".$row['idTache']."&amp;list=".$_GET['list']."'><button><i class='bx bx-trash'></i></button></a>";
-            
+
             echo "</div>";
             echo "</div>";
 
@@ -97,6 +95,13 @@ public $con;
       echo "<a class='butonacueil' href='?action=NewTachePage&amp;list=".$_GET['list']."'>
       <button type='button' name='button' class='btn btn-primary' id='btn'>Ajouter une tache</button>
         </a>";
+        echo "<a href='?action=supprimerListe&amp;list=".$_GET['list']."'><button>Supprimer la liste</button></a>";
+
+    }
+    public function supprimerListe(){
+        $query = "DELETE FROM `list` WHERE `idList`=".$_GET['list'];
+        $this->con->executeQuery($query);
+        echo "suppression réussi";
     }
 
 

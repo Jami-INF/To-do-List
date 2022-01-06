@@ -79,7 +79,7 @@
                   $_SESSION['idUser'] = $utilisateurGateway->findUser($utilisateur->getEmail(),$utilisateur->getMotDePasse());
                   echo $utilisateurRep;
                   if($utilisateurRep!=NULL){
-                    echo "bon utilisateur";
+                    //echo "bon utilisateur";
                     require(__DIR__.'/../accueil.php');
                   }else{
                   echo "mauvais utilisateur";
