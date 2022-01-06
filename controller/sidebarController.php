@@ -9,17 +9,19 @@
         public function afficherListesPrivees()
         {
             if($_GET['action']!='Invite'){
-                echo '<p>Private</p>';
-               $listgw = new ListeGateway();
-               $liste = $listgw->getList();
-               foreach ($liste as $value) {
-                 echo "<li>
-                 <a href='?action=pageListe&amp;list=".$value['idList']."'>
-                  <i class='bx bx-list-ul'></i>
-                  <p class='links_name'>".$value['nomList']."</p>
-                 </a>
-                 <p class='tooltip'>".$value['nomList']."</p>
-                 </li>";
+                if($_SESSION['idUser']!=0){
+                    echo '<p>Private</p>';
+                $listgw = new ListeGateway();
+                $liste = $listgw->getList();
+                foreach ($liste as $value) {
+                    echo "<li>
+                    <a href='?action=pageListe&amp;list=".$value['idList']."'>
+                    <i class='bx bx-list-ul'></i>
+                    <p class='links_name'>".$value['nomList']."</p>
+                    </a>
+                    <p class='tooltip'>".$value['nomList']."</p>
+                    </li>";
+                    }
                 }
             }
         }
