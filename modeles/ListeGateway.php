@@ -83,7 +83,6 @@ public $con;
             echo "<h3>".$row['nomTache']."</h3>";
             echo "<p>".$row['descriptionTache']."</p>";
             echo '<div class="itemlist">';
-            echo $row['estCochee'];
             if($row['estCochee']=="1"){
                 echo '<form class="fromliste"><input ><input type="checkbox" name="checkbox" checked="checked" value="checkbox"></form>';
             }else{
