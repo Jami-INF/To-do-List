@@ -100,6 +100,7 @@ class controllerUser{
         if (isset($_POST['submitNewTache'])) {
         $tache = new TacheGateway($this->con);
         $tache->ajouterTache($_POST['nomTache'], $_POST['descriptionTache'], $this->con);
+        require(__DIR__ . '/../vues/viewTache.php');
         
         }
     }
