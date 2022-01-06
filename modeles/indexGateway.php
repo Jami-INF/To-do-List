@@ -8,11 +8,12 @@
             //Autoload::charger();
 
             try{
-                $username = 'root';
-                $password = '';
-                $dsn = 'localhost';
-                $conname = 'todoux';
-                $con = new Connection($dsn, $conname, $username, $password);
+                // $username = 'root';
+                // $password = '';
+                // $dsn = 'localhost';
+                // $conname = 'todoux';
+                global $username, $password, $dsn, $dbname;
+                $con = new Connection($dsn, $dbname, $username, $password);
                 return $con;
             }catch(PDOException $e){ 
                 echo "connection refusé";
